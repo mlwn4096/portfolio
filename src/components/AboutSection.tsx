@@ -128,7 +128,7 @@ export const AboutSection: React.FC = () => {
 
                 <div className="border-2 border-black bg-white p-3 shadow-neo-sm">
                   <span className="text-[10px] font-black uppercase text-black/60 block">PROJECT SPOTLIGHT</span>
-                  <span>NeuroBots — Autonomous API authorization platform</span>
+                  <span>NeuroBots: Autonomous API authorization platform</span>
                 </div>
 
                 <div className="border-2 border-black bg-white p-3 shadow-neo-sm">
