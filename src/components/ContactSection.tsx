@@ -12,118 +12,95 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 border-b-4 border-black bg-neo-secondary bg-graph-grid">
+    <section id="contact" className="py-20 md:py-28 border-b-4 border-black bg-neo-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Massive Contact Poster Box */}
-        <div className="border-4 border-black bg-[#000000] text-white p-8 sm:p-12 md:p-16 shadow-neo-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          <div className="max-w-3xl space-y-6">
-            
-            <div className="inline-block border-2 border-white bg-neo-accent text-white px-3 py-1 font-display font-black text-xs uppercase tracking-widest shadow-neo-sm">
-              COLLABORATION & INQUIRIES
-            </div>
-
-            <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl uppercase tracking-tighter text-white leading-none">
+          {/* Left Column: Heading & Pitch (7 cols) */}
+          <div className="lg:col-span-7 space-y-6">
+            <h2 className="font-display font-black text-4xl sm:text-6xl md:text-7xl uppercase tracking-tighter text-black leading-[0.95]">
               LET'S BUILD
-              <span className="block text-neo-secondary">
-                SOMETHING
-              </span>
-              <span className="block text-stroke-white-2">
-                INTERESTING.
-              </span>
+              <br />
+              SOMETHING
+              <br />
+              <span>INTERESTING.</span>
             </h2>
 
-            <p className="font-body text-base sm:text-xl font-bold text-white/90 leading-relaxed max-w-2xl">
-              Interested in Artificial Intelligence, Multimedia systems, hackathons, open source experiments, or building practical software? Let's connect.
+            <p className="font-body text-base sm:text-lg font-bold text-black/80 leading-relaxed max-w-xl">
+              Interested in Artificial Intelligence, multimedia systems, hackathons, open source, or building practical software? Get in touch.
             </p>
+          </div>
 
-            {/* Email Action Card */}
-            <div className="pt-4 space-y-4">
-              <div className="border-3 border-black bg-white text-black p-4 sm:p-6 shadow-neo flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 border-2 border-black bg-neo-secondary">
-                    <MailIcon className="w-6 h-6 text-black" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-black uppercase text-black/60 block">DIRECT INBOX</span>
-                    <span className="font-mono font-black text-base sm:text-lg break-all">
-                      {email}
-                    </span>
-                  </div>
-                </div>
+          {/* Right Column: Interactive Contact Box (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Email Card */}
+            <div className="border-4 border-black bg-white p-6 shadow-neo">
+              <span className="text-[10px] font-black uppercase tracking-widest text-black/60 block mb-2">
+                DIRECT INBOX
+              </span>
+              
+              <div className="flex items-center gap-2 mb-4">
+                <MailIcon className="w-5 h-5 text-black shrink-0" />
+                <span className="font-mono font-black text-base sm:text-lg text-black break-all">
+                  {email}
+                </span>
+              </div>
 
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={copyEmail}
+                  className="flex-1 py-2.5 px-4 border-2 border-black bg-neo-secondary font-display font-black text-xs uppercase tracking-wider text-black shadow-neo-sm hover:bg-black hover:text-white transition-all neo-press"
+                >
+                  {copied ? 'COPIED TO CLIPBOARD' : 'COPY EMAIL'}
+                </button>
+                <a
+                  href={`mailto:${email}`}
+                  className="py-2.5 px-4 border-2 border-black bg-black font-display font-black text-xs uppercase tracking-wider text-white shadow-neo-sm hover:bg-neo-accent transition-all neo-press"
+                >
+                  COMPOSE
+                </a>
+              </div>
+            </div>
+
+            {/* Profile Links */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <a
+                href="https://github.com/mlwn4096"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-3 border-black bg-white p-3 shadow-neo-sm flex items-center justify-between hover:bg-black hover:text-white transition-colors group"
+              >
                 <div className="flex items-center gap-2">
-                  <button
-                    onClick={copyEmail}
-                    className="px-4 py-2 border-2 border-black bg-neo-secondary font-display font-black text-xs uppercase shadow-neo-sm hover:bg-neo-accent hover:text-white transition-all neo-press"
-                  >
-                    {copied ? 'COPIED TO CLIPBOARD!' : 'COPY EMAIL'}
-                  </button>
-                  <a
-                    href={`mailto:${email}`}
-                    className="px-4 py-2 border-2 border-black bg-black text-white font-display font-black text-xs uppercase shadow-neo-sm hover:bg-neo-accent transition-all neo-press"
-                  >
-                    COMPOSE
-                  </a>
+                  <GitHubIcon className="w-4 h-4" />
+                  <span className="font-display font-black text-xs uppercase">GitHub</span>
                 </div>
-              </div>
+                <ArrowUpRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
 
-              {/* Direct Profile Links Strip */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                
-                <a
-                  href="https://github.com/mlwn4096"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-3 border-black bg-white text-black p-4 shadow-neo flex items-center justify-between hover:bg-neo-secondary hover:-translate-y-1 transition-all neo-press group"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <GitHubIcon className="w-5 h-5 text-black" />
-                    <div>
-                      <span className="text-[10px] font-black uppercase text-black/60 block">GITHUB</span>
-                      <span className="font-display font-black text-sm">mlwn4096</span>
-                    </div>
-                  </div>
-                  <ArrowUpRightIcon className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
+              <a
+                href="https://www.linkedin.com/in/melwin-santhosh-784550378"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-3 border-black bg-white p-3 shadow-neo-sm flex items-center justify-between hover:bg-black hover:text-white transition-colors group"
+              >
+                <div className="flex items-center gap-2">
+                  <LinkedInIcon className="w-4 h-4" />
+                  <span className="font-display font-black text-xs uppercase">LinkedIn</span>
+                </div>
+                <ArrowUpRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
 
-                <a
-                  href="https://www.linkedin.com/in/melwin-santhosh-784550378"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-3 border-black bg-white text-black p-4 shadow-neo flex items-center justify-between hover:bg-neo-secondary hover:-translate-y-1 transition-all neo-press group"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <LinkedInIcon className="w-5 h-5 text-black" />
-                    <div>
-                      <span className="text-[10px] font-black uppercase text-black/60 block">LINKEDIN</span>
-                      <span className="font-display font-black text-sm">melwin-santhosh</span>
-                    </div>
-                  </div>
-                  <ArrowUpRightIcon className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-
-                <a
-                  href="https://mlwn.runs-on.dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-3 border-black bg-white text-black p-4 shadow-neo flex items-center justify-between hover:bg-neo-secondary hover:-translate-y-1 transition-all neo-press group"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-5 h-5 border-2 border-black bg-neo-accent inline-flex items-center justify-center text-[10px] font-black text-white">
-                      M
-                    </span>
-                    <div>
-                      <span className="text-[10px] font-black uppercase text-black/60 block">DOMAIN</span>
-                      <span className="font-display font-black text-sm">mlwn.runs-on.dev</span>
-                    </div>
-                  </div>
-                  <ArrowUpRightIcon className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-
-              </div>
-
+              <a
+                href="https://mlwn.runs-on.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-3 border-black bg-white p-3 shadow-neo-sm flex items-center justify-between hover:bg-black hover:text-white transition-colors group"
+              >
+                <span className="font-display font-black text-xs uppercase">Domain</span>
+                <ArrowUpRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
             </div>
 
           </div>
