@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #FFFDF5;
+    color: #000000;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-stroke-black-2 {
+    -webkit-text-stroke: 2px #000000;
+    color: transparent;
+  }
+  .text-stroke-black-3 {
+    -webkit-text-stroke: 3px #000000;
+    color: transparent;
+  }
+  .text-stroke-white-2 {
+    -webkit-text-stroke: 2px #FFFFFF;
+    color: transparent;
+  }
+
+  .bg-graph-grid {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+  }
+
+  .bg-graph-grid-dark {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  }
+}
+
+/* Mechanical neo-brutalist interaction rules */
+.neo-press {
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+.neo-press:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px 0px #000000 !important;
+}
+
+.neo-lift {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.neo-lift:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 12px 12px 0px 0px #000000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
