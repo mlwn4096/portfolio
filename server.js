@@ -38,12 +38,12 @@ const cvData = {
       details: "Focus on Computer Applications, Software Engineering, and Artificial Intelligence"
     },
     {
-      degree: "Senior Secondary — CBSE (Class XII)",
+      degree: "Senior Secondary - CBSE (Class XII)",
       institution: "SKPS, Kaduthuruthy",
       period: "2025"
     },
     {
-      degree: "Secondary — CBSE (Class X)",
+      degree: "Secondary - CBSE (Class X)",
       institution: "SKPS, Kaduthuruthy",
       period: "2023"
     }
@@ -51,9 +51,8 @@ const cvData = {
   experience: [
     {
       role: "Core Platform Contributor",
-      organization: "PRAX — Initiative by Vantcrest Labs Pvt. Ltd.",
-      type: "Professional Learning & Collaboration Community",
-      period: "2024 - Present",
+      organization: "PRAX : Initiative by Vantcrest Labs Pvt. Ltd. (Professional Learning & Collaboration Community)",
+      period: "2026 - Present",
       highlights: [
         "Contributing to the development of an invite-only professional community focused on practical experience, continuous learning, and real-world exposure.",
         "Working on a platform that enables members to learn, build projects, document experiences, collaborate, receive feedback, and pursue opportunities.",

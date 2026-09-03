@@ -30,7 +30,7 @@ SKPS, Kaduthuruthy
 --------------------------------------------------------------------------------
 [EXPERIENCE & INITIATIVES]
 --------------------------------------------------------------------------------
-Core Platform Contributor                                        2024 - Present
+Core Platform Contributor                                        2026 - Present
 PRAX - Initiative by Vantcrest Labs Pvt. Ltd.
 (Professional Learning & Collaboration Community)
 * Contributed to the development and architecture of an invite-only professional
