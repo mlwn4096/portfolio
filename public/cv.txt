@@ -1,0 +1,86 @@
+================================================================================
+                                MELWIN SANTHOSH
+             Integrated MCA Student | AI & Software Development
+ Palai, Kerala, India | +91 6235764096 | melwinsanthoah4096@gmail.com
+  linkedin.com/in/melwin-santhosh-784550378 | github.com/mlwn4096
+================================================================================
+
+[PROFILE]
+Integrated MCA student at St. Joseph's College of Engineering and Technology
+(SJCET), Palai, with a strong focus on Artificial Intelligence, software
+development, modern web technologies, and multimedia systems. Passionate about
+learning through hands-on project execution and building practical, technology-
+driven products. Currently actively contributing to the development of PRAX, an
+invite-only professional learning and collaboration initiative by Vantcrest
+Labs Pvt. Ltd.
+
+--------------------------------------------------------------------------------
+[EDUCATION]
+--------------------------------------------------------------------------------
+Integrated Master of Computer Applications (MCA)                     2025 - 2030
+St. Joseph's College of Engineering and Technology (SJCET), Palai
+* Focus: Computer Applications, Software Development, Artificial Intelligence
+
+Senior Secondary - CBSE (Class XII)                                         2025
+SKPS, Kaduthuruthy
+
+Secondary - CBSE (Class X)                                                  2023
+SKPS, Kaduthuruthy
+
+--------------------------------------------------------------------------------
+[EXPERIENCE & INITIATIVES]
+--------------------------------------------------------------------------------
+Core Platform Contributor                                        2024 - Present
+PRAX - Initiative by Vantcrest Labs Pvt. Ltd.
+(Professional Learning & Collaboration Community)
+* Contributed to the development and architecture of an invite-only professional
+  community focused on practical engineering experience, continuous learning,
+  and real-world industry exposure.
+* Developing key modules of the digital platform enabling members to build
+  projects, document technical experiences, collaborate, receive peer feedback,
+  and access career opportunities.
+* Formulating community progression structures, including member milestone
+  systems, project/challenge workflows, mentorship matching, and opportunity
+  pipelines.
+* Bridging practical project-based learning with professional industry standards
+  and cross-functional team collaboration.
+
+--------------------------------------------------------------------------------
+[PROJECTS]
+--------------------------------------------------------------------------------
+PRAX Web Platform
+* Designed and engineered core components of the digital platform supporting
+  the PRAX community ecosystem.
+* Implemented modules for community architecture, member progression stages,
+  interactive challenges, mentorship workflows, and experience documentation.
+* Focused on delivering a structured, high-performance environment tailored for
+  practical learning and collaborative product building.
+
+Personal Portfolio Website
+* Designed and deployed a responsive personal portfolio website showcasing
+  technical projects, development experience, and technical proficiencies.
+* Implemented modern web standards and UI/UX design principles to deliver a fast,
+  accessible, and professional digital web presence.
+
+--------------------------------------------------------------------------------
+[TECHNICAL SKILLS & EXPERTISE]
+--------------------------------------------------------------------------------
+* Systems & Operating Systems:
+  Linux Environments, Linux Mint, Fedora, Command-Line (CLI) Workflows,
+  Shell Scripting, System Configuration & Hardware Troubleshooting
+
+* Software & Web Development:
+  Web Application Development, Modern Frontend Development, HTML5, CSS3,
+  JavaScript, Responsive Design, UI/UX Design Principles
+
+* AI & Modern Engineering Workflows:
+  Artificial Intelligence, AI-Assisted Development Tools, Prompt Engineering,
+  Workflow Automation, Git & Version Control
+
+* Hardware & Systems Engineering:
+  Computer Systems Architecture, Hardware Diagnostics, System Performance Tuning
+
+* Core Interests:
+  Software Development, Artificial Intelligence, Web Technologies,
+  Multimedia & Digital Media, Open-Source Technologies
+================================================================================

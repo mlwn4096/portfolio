@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melwin Santhosh | student + builder</title>
+  <meta name="description" content="Melwin Santhosh - Integrated MCA Student @ SJCET Palai, Core Contributor @ PRAX. CLI/IDE Terminal Portfolio.">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="ide-body">
+
+  <!-- Main IDE / Terminal Window Shell -->
+  <div class="ide-window">
+
+    <!-- 1. Top IDE Chrome / Window Bar -->
+    <header class="ide-topbar">
+      <div class="window-buttons">
+        <span class="dot dot-close"></span>
+        <span class="dot dot-minimize"></span>
+        <span class="dot dot-maximize"></span>
+      </div>
+
+      <div class="ide-breadcrumbs">
+        <span class="bc-root">melwin-os</span>
+        <span class="bc-sep">/</span>
+        <span class="bc-dir">workspace</span>
+        <span class="bc-sep">/</span>
+        <span class="bc-file" id="activeBreadcrumb">00_boot.sh</span>
+      </div>
+
+      <!-- Distinct Visual Signature: System Telemetry HUD -->
+      <div class="telemetry-hud">
+        <div class="telemetry-item">
+          <span class="pulse-beacon"></span>
+          <span class="hud-label">SJCET-OS</span>
+          <span class="hud-val">v2.6.0</span>
+        </div>
+        <div class="telemetry-item cpu-meter">
+          <span class="hud-label">MCA</span>
+          <span class="hud-val">2025–30</span>
+        </div>
+        <a href="/api/cv" class="hud-cv-btn" download title="Download ATS PDF Resume">
+          <span class="hud-arrow">↓</span> resume.pdf
+        </a>
+      </div>
+    </header>
+
+    <!-- 2. IDE Body Grid (Left Explorer Sidebar + Main Editor Panel) -->
+    <div class="ide-workspace">
+
+      <!-- Left Sidebar: File Tree Navigation -->
+      <aside class="ide-sidebar" id="ideSidebar">
+        <div class="sidebar-section-title">
+          <span class="sidebar-icon">▼</span> EXPLORER : MELWIN
+        </div>
+
+        <div class="file-tree">
+          <div class="tree-root">
+            <span class="folder-icon">▾ 📂</span>
+            <span class="root-name">melwin-workspace</span>
+          </div>
+
+          <ul class="tree-list">
+            <!-- 00_boot.sh -->
+            <li class="tree-item active" data-target="panel-boot">
+              <span class="file-icon icon-sh">⚡</span>
+              <span class="file-name">00_boot.sh</span>
+              <span class="file-badge">INIT</span>
+            </li>
+
+            <!-- 01_profile.md -->
+            <li class="tree-item" data-target="panel-profile">
+              <span class="file-icon icon-md">📝</span>
+              <span class="file-name">01_profile.md</span>
+            </li>
+
+            <!-- Folder: experience -->
+            <li class="tree-folder-group">
+              <div class="tree-folder-title">
+                <span class="folder-toggle">▾ 📁</span>
+                <span class="folder-name">02_experience</span>
+              </div>
+              <ul class="tree-sublist">
+                <li class="tree-item" data-target="panel-experience">
+                  <span class="file-icon icon-ts">🔷</span>
+                  <span class="file-name">prax-initiative.ts</span>
+                  <span class="file-badge badge-amber">CORE</span>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Folder: projects -->
+            <li class="tree-folder-group">
+              <div class="tree-folder-title">
+                <span class="folder-toggle">▾ 📁</span>
+                <span class="folder-name">03_projects</span>
+              </div>
+              <ul class="tree-sublist">
+                <li class="tree-item" data-target="panel-projects">
+                  <span class="file-icon icon-dir">📦</span>
+                  <span class="file-name">projects_tree.sh</span>
+                </li>
+              </ul>
+            </li>
+
+            <!-- package.json (Skills) -->
+            <li class="tree-item" data-target="panel-skills">
+              <span class="file-icon icon-json">⚙️</span>
+              <span class="file-name">package.json</span>
+              <span class="file-badge badge-green">SKILLS</span>
+            </li>
+
+            <!-- education.env -->
+            <li class="tree-item" data-target="panel-education">
+              <span class="file-icon icon-env">🎓</span>
+              <span class="file-name">education.env</span>
+            </li>
+
+            <!-- contact.sh -->
+            <li class="tree-item" data-target="panel-contact">
+              <span class="file-icon icon-sh">📬</span>
+              <span class="file-name">contact.sh</span>
+            </li>
+
+            <!-- PDF CV download item -->
+            <li class="tree-item tree-download-item">
+              <a href="/api/cv" download class="sidebar-cv-link">
+                <span class="file-icon icon-pdf">📄</span>
+                <span class="file-name">Melwin_CV.pdf</span>
+                <span class="file-badge badge-cv">3.9K [↓]</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sidebar Footer Status -->
+        <div class="sidebar-footer">
+          <div class="git-status">
+            <span class="git-icon">⎇</span> main* • PRAX Core Contributor
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Editor & Content Area -->
+      <main class="ide-main">
+
+        <!-- Editor Tab Bar -->
+        <div class="editor-tabs">
+          <button class="editor-tab active" data-target="panel-boot">
+            <span class="tab-icon">⚡</span> 00_boot.sh
+          </button>
+          <button class="editor-tab" data-target="panel-profile">
+            <span class="tab-icon">📝</span> 01_profile.md
+          </button>
+          <button class="editor-tab" data-target="panel-experience">
+            <span class="tab-icon">🔷</span> prax.ts
+          </button>
+          <button class="editor-tab" data-target="panel-projects">
+            <span class="tab-icon">📦</span> projects/
+          </button>
+          <button class="editor-tab" data-target="panel-skills">
+            <span class="tab-icon">⚙️</span> package.json
+          </button>
+          <button class="editor-tab" data-target="panel-contact">
+            <span class="tab-icon">📬</span> contact.sh
+          </button>
+        </div>
+
+        <!-- Mobile Navigation Toggle Bar -->
+        <div class="mobile-nav-bar">
+          <button class="mobile-sidebar-toggle" id="sidebarToggle">
+            <span class="toggle-icon">☰</span> Explorer Files
+          </button>
+          <a href="/api/cv" class="mobile-cv-quick" download>↓ Download CV</a>
+        </div>
+
+        <!-- Scrollable Editor Canvas -->
+        <div class="editor-canvas" id="editorCanvas">
+
+          <!-- =============================================================
+               SECTION 1: BOOT SEQUENCE & HERO (00_boot.sh)
+               ============================================================= -->
+          <section id="panel-boot" class="editor-section">
+            <div class="section-badge-line">
+              <span class="prompt-sym">$</span> bash ~/00_boot.sh --verbose
+            </div>
+
+            <!-- Fake Boot Log Card -->
+            <div class="terminal-card boot-card">
+              <div class="boot-header">
+                <span class="boot-title">SJCET-OS KERNEL BOOT LOADER // x86_64</span>
+                <span class="boot-timer" id="bootTimer">0.00s</span>
+              </div>
+              <div class="boot-log-body" id="bootLogBody">
+                <div class="log-line"><span class="log-ts">[  0.000000]</span> Initializing MelwinOS kernel (Linux 6.8.0-melwin)...</div>
+                <div class="log-line"><span class="log-ts">[  0.012480]</span> CPU: 8 cores online • Hardware Diagnostics: ALL TESTS PASSED</div>
+                <div class="log-line"><span class="log-ts">[  0.029810]</span> Loading environment: <span class="log-cyan">St. Joseph’s College of Engineering and Technology (SJCET), Palai</span></div>
+                <div class="log-line"><span class="log-ts">[  0.048120]</span> Degree pipeline: <span class="log-amber">Integrated MCA (2025 — 2030)</span> [ACTIVE]</div>
+                <div class="log-line"><span class="log-ts">[  0.071940]</span> Initializing PRAX collaboration modules (Vantcrest Labs Pvt. Ltd.)... [ <span class="log-green">OK</span> ]</div>
+                <div class="log-line"><span class="log-ts">[  0.098410]</span> Authenticated user: <span class="log-bold">Melwin Santhosh (UID 1000)</span> [student + builder]</div>
+                <div class="log-line log-success"><span class="log-ts">[  0.104200]</span> READY: Welcome to Melwin's workspace session.</div>
+              </div>
+            </div>
+
+            <!-- Main Hero Presentation -->
+            <div class="hero-box">
+              <div class="hero-tagline-bar">
+                <span class="status-dot-green"></span>
+                <span class="identity-badge">student + builder</span>
+                <span class="sep">•</span>
+                <span class="location-badge">Palai, Kerala, India</span>
+              </div>
+
+              <h1 class="hero-name">
+                Melwin Santhosh<span class="cursor-blink">_</span>
+              </h1>
+
+              <div class="hero-role-line">
+                <span class="prompt-arrow">&gt;</span>
+                <span class="role-text">Integrated MCA Scholar</span>
+                <span class="role-slash">/</span>
+                <span class="role-text-accent">AI &amp; Software Development</span>
+              </div>
+
+              <p class="hero-mission">
+                Engineering practical AI workflows, resilient web platforms, and open-source systems. Learning through concrete project execution rather than static theory, and building initiatives that connect builders with real-world opportunities.
+              </p>
+
+              <!-- CLI Action Buttons -->
+              <div class="hero-actions">
+                <button class="cli-btn btn-amber" data-nav="panel-projects">
+                  <span class="btn-prompt">$</span> cd ~/projects
+                </button>
+                <a href="/api/cv" class="cli-btn btn-green" download>
+                  <span class="btn-prompt">$</span> cat resume.pdf [↓]
+                </a>
+                <button class="cli-btn btn-muted" data-nav="panel-contact">
+                  <span class="btn-prompt">$</span> ./contact.sh
+                </button>
+              </div>
+
+              <!-- Quick Terminal Contact Bar -->
+              <div class="hero-footer-bar">
+                <div class="meta-flag">
+                  <span class="flag-label">EMAIL:</span>
+                  <a href="mailto:melwinsanthoah4096@gmail.com" class="flag-value">melwinsanthoah4096@gmail.com</a>
+                </div>
+                <div class="meta-flag">
+                  <span class="flag-label">PHONE:</span>
+                  <a href="tel:+916235764096" class="flag-value">+91 6235764096</a>
+                </div>
+                <div class="meta-flag">
+                  <span class="flag-label">GITHUB:</span>
+                  <a href="https://github.com/mlwn4096" target="_blank" rel="noopener" class="flag-value">@mlwn4096</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- =============================================================
+               SECTION 2: PROFILE (01_profile.md)
+               ============================================================= -->
+          <section id="panel-profile" class="editor-section">
+            <div class="section-badge-line">
+              <span class="prompt-sym">$</span> cat ~/01_profile.md
+            </div>
+
+            <div class="terminal-card">
+              <div class="card-bar">
+                <span class="bar-title">FILE: ~/01_profile.md</span>
+                <span class="bar-tag">MARKDOWN</span>
+              </div>
+              <div class="card-content markdown-view">
+                <h2 class="md-h2"># Profile Summary</h2>
+                <p class="body-text">
+                  I am an Integrated MCA student at <strong>St. Joseph’s College of Engineering and Technology (SJCET)</strong>, Palai, with a dedicated focus on Artificial Intelligence, full-stack software development, modern web technologies, and multimedia systems.
+                </p>
+                <p class="body-text">
+                  My philosophy centers on learning through practical, hands-on project execution. I enjoy turning complex specifications into structured, production-grade applications, whether that involves Linux system internals, frontend interfaces, or AI-assisted development pipelines.
+                </p>
+                <p class="body-text">
+                  Currently, I am actively contributing to the development of <strong>PRAX</strong>, an invite-only professional learning and collaboration initiative by <strong>Vantcrest Labs Pvt. Ltd.</strong>, building the digital environment for collaborative engineering and member progression.
+                </p>
+
+                <h3 class="md-h3">## Technical Interests</h3>
+                <div class="pill-grid">
+                  <span class="tech-pill">Artificial Intelligence</span>
+                  <span class="tech-pill">Software Engineering</span>
+                  <span class="tech-pill">Web Application Architecture</span>
+                  <span class="tech-pill">Linux &amp; Open-Source</span>
+                  <span class="tech-pill">Multimedia &amp; Digital Tech</span>
+                  <span class="tech-pill">Computer Systems &amp; Hardware</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- =============================================================
+               SECTION 3: EXPERIENCE (prax-initiative.ts)
+               ============================================================= -->
+          <section id="panel-experience" class="editor-section">
+            <div class="section-badge-line">
+              <span class="prompt-sym">$</span> inspect ~/02_experience/prax-initiative.ts
+            </div>
+
+            <div class="terminal-card">
+              <div class="card-bar">
+                <span class="bar-title">SOURCE: ~/02_experience/prax-initiative.ts</span>
+                <span class="bar-tag">TYPESCRIPT</span>
+              </div>
+
+              <div class="card-content">
+                <div class="code-snippet-box">
+                  <pre class="code-block"><code><span class="token-kw">interface</span> <span class="token-type">InitiativeRole</span> {
+  <span class="token-prop">role</span>: <span class="token-str">"Core Platform Contributor"</span>;
+  <span class="token-prop">initiative</span>: <span class="token-str">"PRAX"</span>;
+  <span class="token-prop">organization</span>: <span class="token-str">"Vantcrest Labs Pvt. Ltd."</span>;
+  <span class="token-prop">type</span>: <span class="token-str">"Professional Learning &amp; Collaboration Community"</span>;
+  <span class="token-prop">status</span>: <span class="token-str">"Active (2024 — Present)"</span>;
+}</code></pre>
+                </div>
+
+                <div class="experience-details">
+                  <h3 class="exp-title">Core Platform Contributor</h3>
+                  <div class="exp-org">
+                    PRAX — Initiative by Vantcrest Labs Pvt. Ltd.
+                    <span class="exp-badge">2024 — Present</span>
+                  </div>
+
+                  <ul class="task-list">
+                    <li>
+                      <span class="task-cursor">&gt;</span>
+                      <span class="body-text">Contributing to the architecture and growth of an invite-only professional community engineered for hands-on experience, continuous learning, and real-world exposure.</span>
+                    </li>
+                    <li>
+                      <span class="task-cursor">&gt;</span>
+                      <span class="body-text">Developing digital platform modules enabling members to build engineering projects, document technical milestones, collaborate across cohorts, receive peer reviews, and access career opportunities.</span>
+                    </li>
+                    <li>
+                      <span class="task-cursor">&gt;</span>
+                      <span class="body-text">Formulating foundational community architecture, member progression stages, structured challenge systems, mentorship frameworks, and opportunity matching.</span>
+                    </li>
+                    <li>
+                      <span class="task-cursor">&gt;</span>
+                      <span class="body-text">Bridging hands-on project-based learning with professional industry engineering standards and collaborative product delivery.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- =============================================================
+               SECTION 4: PROJECTS FILE TREE (projects_tree.sh)
+               ============================================================= -->
+          <section id="panel-projects" class="editor-section">
+            <div class="section-badge-line">
+              <span class="prompt-sym">$</span> tree ~/projects --interactive
+            </div>
+
+            <div class="terminal-card">
+              <div class="card-bar">
+                <span class="bar-title">DIRECTORY LISTING: ~/projects/</span>
+                <span class="bar-tag">[Click to expand project specs]</span>
+              </div>
+
+              <div class="card-content">
+                <p class="dir-instruction">
+                  <span class="prompt-arrow">&gt;</span> Click any project directory below to toggle full technical specifications:
+                </p>
+
+                <div class="project-directory-tree">
+
+                  <!-- Project Item 1 -->
+                  <div class="project-entry expanded" id="proj-prax">
+                    <div class="project-entry-header" onclick="toggleProject('proj-prax')">
+                      <span class="entry-toggle">[-]</span>
+                      <span class="entry-icon">📂</span>
+                      <span class="entry-path">~/projects/prax-web-platform/</span>
+                      <span class="entry-status status-prod">● PRODUCTION</span>
+                    </div>
+
+                    <div class="project-details">
+                      <h4 class="proj-title">PRAX Web Platform</h4>
+                      <p class="body-text">
+                        Architecting and developing the primary web application infrastructure supporting the PRAX invite-only professional learning community. Engineered modular components for community governance, multi-tier member progression, structured technical challenge systems, mentorship tracking, and portfolio experience documentation.
+                      </p>
+                      <div class="project-meta-box">
+                        <div class="meta-col">
+                          <span class="meta-h">DOMAIN:</span>
+                          <span class="meta-v">Community Architecture &amp; Web Platform</span>
+                        </div>
+                        <div class="meta-col">
+                          <span class="meta-h">FOCUS:</span>
+                          <span class="meta-v">Member Progression • Challenge Tracks • Mentorship</span>
+                        </div>
+                        <div class="meta-col">
+                          <span class="meta-h">ECOSYSTEM:</span>
+                          <span class="meta-v">Vantcrest Labs Pvt. Ltd.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Project Item 2 -->
+                  <div class="project-entry expanded" id="proj-portfolio">
+                    <div class="project-entry-header" onclick="toggleProject('proj-portfolio')">
+                      <span class="entry-toggle">[-]</span>
+                      <span class="entry-icon">📂</span>
+                      <span class="entry-path">~/projects/cli-ide-portfolio/</span>
+                      <span class="entry-status status-live">● LIVE SERVER</span>
+                    </div>
+
+                    <div class="project-details">
+                      <h4 class="proj-title">Personal Portfolio &amp; Developer Hub</h4>
+                      <p class="body-text">
+                        High-performance developer portfolio application mimicking an interactive terminal/IDE environment. Powered by Node.js and Express backend, featuring responsive file-tree navigation, mock boot diagnostics, interactive command execution, REST endpoints, and instant single-page ATS-compliant PDF resume delivery.
+                      </p>
+                      <div class="project-meta-box">
+                        <div class="meta-col">
+                          <span class="meta-h">BACKEND:</span>
+                          <span class="meta-v">Node.js • Express • RESTful Endpoints</span>
+                        </div>
+                        <div class="meta-col">
+                          <span class="meta-h">FRONTEND:</span>
+                          <span class="meta-v">Custom CLI/IDE Layout • Monospace Typography</span>
+                        </div>
+                        <div class="meta-col">
+                          <span class="meta-h">INTEGRATION:</span>
+                          <span class="meta-v">ATS Single-Page PDF Engine</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Project Item 3 -->
+                  <div class="project-entry" id="proj-toolchains">
+                    <div class="project-entry-header" onclick="toggleProject('proj-toolchains')">
+                      <span class="entry-toggle">[+]</span>
+                      <span class="entry-icon">📂</span>
+                      <span class="entry-path">~/projects/ai-developer-toolchains/</span>
+                      <span class="entry-status status-tool">● WORKFLOW</span>
+                    </div>
+
+                    <div class="project-details">
+                      <h4 class="proj-title">AI-Assisted Development Toolchains</h4>
+                      <p class="body-text">
+                        Curated collection of Linux CLI automation scripts, shell macros, and structured prompt engineering templates to streamline full-stack software development, automated testing, and hardware diagnosis.
+                      </p>
+                      <div class="project-meta-box">
+                        <div class="meta-col">
+                          <span class="meta-h">ENVIRONMENT:</span>
+                          <span class="meta-v">Linux Mint • Fedora • Bash / Zsh</span>
+                        </div>
+                        <div class="meta-col">
+                          <span class="meta-h">TOOLS:</span>
+                          <span class="meta-v">AI-Assisted Workflows • Git Automation</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- =============================================================
+               SECTION 5: SKILLS AS PACKAGE.JSON (package.json)
+               ============================================================= -->
+          <section id="panel-skills" class="editor-section">
+            <div class="section-badge-line">
+              <span class="prompt-sym">$</span> cat ~/package.json
+            </div>
+
+            <div class="terminal-card">
+              <div class="card-bar">
+                <span class="bar-title">FILE: ~/package.json</span>
+                <span class="bar-tag">JSON // DEPENDENCIES &amp; CAPABILITIES</span>
+              </div>
+
+              <div class="card-content">
+                <pre class="code-block json-block"><code>{
+  <span class="json-key">"name"</span>: <span class="json-str">"melwin-santhosh"</span>,
+  <span class="json-key">"version"</span>: <span class="json-str">"2025.2030.0"</span>,
+  <span class="json-key">"role"</span>: <span class="json-str">"student + builder"</span>,
+  <span class="json-key">"institution"</span>: <span class="json-str">"SJCET Palai"</span>,
+  <span class="json-key">"operatingSystems"</span>: [
+    <span class="json-str">"Linux Mint"</span>,
+    <span class="json-str">"Fedora"</span>,
+    <span class="json-str">"Linux Command-Line Environments"</span>,
+    <span class="json-str">"System Administration &amp; Troubleshooting"</span>
+  ],
+  <span class="json-key">"cliAndWorkflows"</span>: [
+    <span class="json-str">"Terminal CLI Workflows"</span>,
+    <span class="json-str">"Bash Shell Scripting"</span>,
+    <span class="json-str">"Git Version Control"</span>,
+    <span class="json-str">"System Configuration"</span>
+  ],
+  <span class="json-key">"webDevelopment"</span>: [
+    <span class="json-str">"Web Application Development"</span>,
+    <span class="json-str">"Modern Frontend Engineering"</span>,
+    <span class="json-str">"HTML5 / CSS3"</span>,
+    <span class="json-str">"JavaScript"</span>,
+    <span class="json-str">"Responsive UI/UX Design"</span>
+  ],
+  <span class="json-key">"aiEngineering"</span>: [
+    <span class="json-str">"Artificial Intelligence Concepts"</span>,
+    <span class="json-str">"AI-Assisted Development Workflows"</span>,
+    <span class="json-str">"Prompt Engineering"</span>
+  ],
+  <span class="json-key">"hardwareAndSystems"</span>: [
+    <span class="json-str">"Computer Architecture"</span>,
+    <span class="json-str">"Hardware Diagnostics &amp; Assembly"</span>,
+    <span class="json-str">"Performance Optimization"</span>
+  ]
+}</code></pre>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- =============================================================
+               SECTION 6: EDUCATION (education.env)
+               ============================================================= -->
+          <section id="panel-education" class="editor-section">
+            <div class="section-badge-line">
+              <span class="prompt-sym">$</span> env | grep -E "DEGREE|COLLEGE|SCHOOL"
+            </div>
+
+            <div class="terminal-card">
+              <div class="card-bar">
+                <span class="bar-title">ENVIRONMENT: ~/education.env</span>
+                <span class="bar-tag">ACADEMIC CREDENTIALS</span>
+              </div>
+
+              <div class="card-content">
+                <div class="env-records">
+
+                  <!-- Record 1: SJCET -->
+                  <div class="env-item current">
+                    <div class="env-var-line">
+                      <span class="var-name">DEGREE_01</span>=<span class="var-val">"Integrated Master of Computer Applications (MCA)"</span>
+                    </div>
+                    <div class="env-var-line">
+                      <span class="var-name">COLLEGE</span>=<span class="var-val">"St. Joseph's College of Engineering and Technology (SJCET), Palai"</span>
+                    </div>
+                    <div class="env-var-line">
+                      <span class="var-name">PERIOD</span>=<span class="var-amber">"2025 — 2030"</span> <span class="env-flag">[CURRENT]</span>
+                    </div>
+                    <div class="env-desc">
+                      Specialization in Computer Applications, Software Engineering, and Artificial Intelligence.
+                    </div>
+                  </div>
+
+                  <!-- Record 2: Class XII -->
+                  <div class="env-item">
+                    <div class="env-var-line">
+                      <span class="var-name">DEGREE_02</span>=<span class="var-val">"Senior Secondary — CBSE (Class XII)"</span>
+                    </div>
+                    <div class="env-var-line">
+                      <span class="var-name">INSTITUTION</span>=<span class="var-val">"SKPS, Kaduthuruthy"</span>
+                    </div>
+                    <div class="env-var-line">
+                      <span class="var-name">COMPLETED</span>=<span class="var-amber">"2025"</span>
+                    </div>
+                  </div>
+
+                  <!-- Record 3: Class X -->
+                  <div class="env-item">
+                    <div class="env-var-line">
+                      <span class="var-name">DEGREE_03</span>=<span class="var-val">"Secondary — CBSE (Class X)"</span>
+                    </div>
+                    <div class="env-var-line">
+                      <span class="var-name">INSTITUTION</span>=<span class="var-val">"SKPS, Kaduthuruthy"</span>
+                    </div>
+                    <div class="env-var-line">
+                      <span class="var-name">COMPLETED</span>=<span class="var-amber">"2023"</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          <!-- =============================================================
+               SECTION 7: CONTACT ($ contact --email)
+               ============================================================= -->
+          <section id="panel-contact" class="editor-section">
+            <div class="section-badge-line">
+              <span class="prompt-sym">$</span> ./contact.sh --all
+            </div>
+
+            <div class="terminal-card">
+              <div class="card-bar">
+                <span class="bar-title">EXECUTABLE: ~/contact.sh</span>
+                <span class="bar-tag">COMMUNICATION PIPELINE</span>
+              </div>
+
+              <div class="card-content contact-content-grid">
+                <!-- Left: Flags -->
+                <div class="contact-flags-box">
+                  <h3 class="flag-section-title">COMMAND ARGUMENTS</h3>
+                  
+                  <div class="cli-flag-item">
+                    <div class="flag-cmd">
+                      <span class="flag-opt">--email</span>
+                      <button class="copy-btn" onclick="copyText('melwinsanthoah4096@gmail.com', this)">copy</button>
+                    </div>
+                    <a href="mailto:melwinsanthoah4096@gmail.com" class="flag-link">melwinsanthoah4096@gmail.com</a>
+                  </div>
+
+                  <div class="cli-flag-item">
+                    <div class="flag-cmd">
+                      <span class="flag-opt">--phone</span>
+                      <button class="copy-btn" onclick="copyText('+916235764096', this)">copy</button>
+                    </div>
+                    <a href="tel:+916235764096" class="flag-link">+91 6235764096</a>
+                  </div>
+
+                  <div class="cli-flag-item">
+                    <div class="flag-cmd">
+                      <span class="flag-opt">--linkedin</span>
+                    </div>
+                    <a href="https://www.linkedin.com/in/melwin-santhosh-784550378" target="_blank" rel="noopener" class="flag-link">linkedin.com/in/melwin-santhosh-784550378</a>
+                  </div>
+
+                  <div class="cli-flag-item">
+                    <div class="flag-cmd">
+                      <span class="flag-opt">--github</span>
+                    </div>
+                    <a href="https://github.com/mlwn4096" target="_blank" rel="noopener" class="flag-link">github.com/mlwn4096</a>
+                  </div>
+
+                  <div class="cli-flag-item">
+                    <div class="flag-cmd">
+                      <span class="flag-opt">--resume</span>
+                    </div>
+                    <a href="/api/cv" class="flag-link resume-link" download>Download Melwin_Santhosh_CV.pdf</a>
+                  </div>
+                </div>
+
+                <!-- Right: Interactive Form -->
+                <div class="contact-form-box">
+                  <h3 class="flag-section-title">STDIN MESSAGE TRANSMISSION</h3>
+                  <form id="ideContactForm" class="ide-form">
+                    <div class="ide-form-group">
+                      <label for="contactName"><span class="prompt-arrow">&gt;</span> enter_name:</label>
+                      <input type="text" id="contactName" required placeholder="Alex Smith" autocomplete="off">
+                    </div>
+
+                    <div class="ide-form-group">
+                      <label for="contactEmail"><span class="prompt-arrow">&gt;</span> enter_email:</label>
+                      <input type="email" id="contactEmail" required placeholder="alex@domain.com" autocomplete="off">
+                    </div>
+
+                    <div class="ide-form-group">
+                      <label for="contactMessage"><span class="prompt-arrow">&gt;</span> enter_payload:</label>
+                      <textarea id="contactMessage" rows="3" required placeholder="Project collaboration, inquiries, or tech discussion..."></textarea>
+                    </div>
+
+                    <button type="submit" id="ideSubmitBtn" class="cli-btn btn-amber btn-send">
+                      <span class="btn-prompt">$</span> send --payload
+                    </button>
+                    <div id="ideFormStatus" class="form-status-line"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div><!-- /editor-canvas -->
+
+      </main>
+    </div><!-- /ide-workspace -->
+
+    <!-- 3. Bottom IDE Status Line -->
+    <footer class="ide-statusline">
+      <div class="status-left">
+        <span class="status-mode">NORMAL</span>
+        <span class="status-git">⎇ main</span>
+        <span class="status-node">node v24</span>
+        <span class="status-file">UTF-8</span>
+      </div>
+      <div class="status-right">
+        <span class="status-college">SJCET Palai</span>
+        <span class="status-sep">|</span>
+        <span class="status-prax">PRAX Contributor</span>
+        <span class="status-sep">|</span>
+        <span class="status-ln">Ln 1, Col 1</span>
+      </div>
+    </footer>
+
+  </div><!-- /ide-window -->
+
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "portfolio-nodejs",
+  "version": "1.0.0",
+  "description": "Melwin Santhosh - Developer Portfolio & CV Portal (Node.js & Express)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "nodejs",
+    "express",
+    "melwin-santhosh",
+    "cv",
+    "ai",
+    "software-development"
+  ],
+  "author": "Melwin Santhosh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
