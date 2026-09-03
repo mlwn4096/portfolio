@@ -1,5 +1,6 @@
 // ==========================================================================
-// MELWIN SANTHOSH - CLI/IDE INTERACTIVE CONTROLLER
+// MELWIN SANTHOSH - CLI/IDE PORTFOLIO JAVASCRIPT CONTROLLER
+// Zero em dashes, zero unnecessary dependencies, crisp micro-interactions
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,39 +9,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const activeBreadcrumb = document.getElementById('activeBreadcrumb');
   const treeItems = document.querySelectorAll('.tree-item[data-target]');
   const editorTabs = document.querySelectorAll('.editor-tab[data-target]');
-  const sidebarToggle = document.getElementById('sidebarToggle');
+  const mobileSidebarBtn = document.getElementById('mobileSidebarBtn');
   const ideSidebar = document.getElementById('ideSidebar');
 
-  // Breadcrumb mapping
-  const fileNames = {
+  // Breadcrumb File Mappings
+  const fileLabels = {
     'panel-boot': '00_boot.sh',
     'panel-profile': '01_profile.md',
-    'panel-experience': 'prax-initiative.ts',
-    'panel-projects': 'projects_tree.sh',
+    'panel-experience': 'prax_initiative.ts',
+    'panel-projects': 'project_directory.sh',
+    'panel-demo': 'prax_live_demo.tsx',
     'panel-skills': 'package.json',
     'panel-education': 'education.env',
-    'panel-contact': 'contact.sh'
+    'panel-contact': 'contact.sh',
+    'panel-legal': 'legal_policy.md'
   };
 
-  // Switch Active Tab / Section
-  function navigateToSection(targetId) {
-    const targetEl = document.getElementById(targetId);
-    if (!targetEl) return;
+  // Section Navigation
+  function navigateSection(targetId) {
+    const el = document.getElementById(targetId);
+    if (!el) return;
 
-    // Smooth scroll into view within the editor canvas
-    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    updateActiveStates(targetId);
 
-    // Update active states
-    updateActiveUI(targetId);
-
-    // Close mobile sidebar if open
     if (ideSidebar && ideSidebar.classList.contains('mobile-open')) {
       ideSidebar.classList.remove('mobile-open');
     }
   }
 
-  function updateActiveUI(targetId) {
-    // Update tabs
+  function updateActiveStates(targetId) {
     editorTabs.forEach(tab => {
       if (tab.getAttribute('data-target') === targetId) {
         tab.classList.add('active');
@@ -49,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update sidebar tree items
     treeItems.forEach(item => {
       if (item.getAttribute('data-target') === targetId) {
         item.classList.add('active');
@@ -58,9 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update breadcrumb
-    if (activeBreadcrumb && fileNames[targetId]) {
-      activeBreadcrumb.innerText = fileNames[targetId];
+    if (activeBreadcrumb && fileLabels[targetId]) {
+      activeBreadcrumb.innerText = fileLabels[targetId];
     }
   }
 
@@ -68,15 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
   treeItems.forEach(item => {
     item.addEventListener('click', () => {
       const target = item.getAttribute('data-target');
-      navigateToSection(target);
+      navigateSection(target);
     });
   });
 
-  // Bind Editor Tabs
+  // Bind Top Editor Tabs
   editorTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.getAttribute('data-target');
-      navigateToSection(target);
+      navigateSection(target);
     });
   });
 
@@ -84,77 +80,79 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('button[data-nav]').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.getAttribute('data-nav');
-      navigateToSection(target);
+      navigateSection(target);
     });
   });
 
   // Mobile Sidebar Toggle
-  if (sidebarToggle && ideSidebar) {
-    sidebarToggle.addEventListener('click', (e) => {
+  if (mobileSidebarBtn && ideSidebar) {
+    mobileSidebarBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       ideSidebar.classList.toggle('mobile-open');
     });
 
-    // Close on click outside
     document.addEventListener('click', (e) => {
-      if (!ideSidebar.contains(e.target) && e.target !== sidebarToggle) {
+      if (!ideSidebar.contains(e.target) && e.target !== mobileSidebarBtn) {
         ideSidebar.classList.remove('mobile-open');
       }
     });
   }
 
-  // ScrollSpy to update active tab when scrolling through editor canvas
+  // ScrollSpy to update active tab based on scroll position
   if (editorCanvas) {
-    const sections = document.querySelectorAll('.editor-section');
+    const sections = document.querySelectorAll('.editor-block');
     editorCanvas.addEventListener('scroll', () => {
       const canvasTop = editorCanvas.getBoundingClientRect().top;
-      let currentSectionId = null;
+      let activeId = null;
 
       sections.forEach(sec => {
-        const rect = sec.getBoundingClientRect();
-        if (rect.top - canvasTop <= 120) {
-          currentSectionId = sec.id;
+        const r = sec.getBoundingClientRect();
+        if (r.top - canvasTop <= 130) {
+          activeId = sec.id;
         }
       });
 
-      if (currentSectionId) {
-        updateActiveUI(currentSectionId);
+      if (activeId) {
+        updateActiveStates(activeId);
       }
     }, { passive: true });
   }
 
-  // Boot Sequence Simulated Counter
-  const bootTimer = document.getElementById('bootTimer');
-  if (bootTimer) {
+  // Simulated Boot Timer
+  const bootCounter = document.getElementById('bootCounter');
+  if (bootCounter) {
     let count = 0;
-    const interval = setInterval(() => {
-      count += 0.015;
+    const timer = setInterval(() => {
+      count += 0.012;
       if (count >= 0.104) {
         count = 0.104;
-        clearInterval(interval);
+        clearInterval(timer);
       }
-      bootTimer.innerText = count.toFixed(3) + 's';
-    }, 40);
+      bootCounter.innerText = count.toFixed(3) + 's';
+    }, 45);
   }
 
-  // Interactive Form AJAX Submission
-  const ideContactForm = document.getElementById('ideContactForm');
-  const ideSubmitBtn = document.getElementById('ideSubmitBtn');
-  const ideFormStatus = document.getElementById('ideFormStatus');
+  // Contact Form AJAX with Skeleton Loader
+  const contactForm = document.getElementById('contactForm');
+  const formSubmitButton = document.getElementById('formSubmitButton');
+  const formNotification = document.getElementById('formNotification');
+  const formSkeleton = document.getElementById('formSkeleton');
 
-  if (ideContactForm) {
-    ideContactForm.addEventListener('submit', async (e) => {
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('contactName').value.trim();
-      const email = document.getElementById('contactEmail').value.trim();
-      const message = document.getElementById('contactMessage').value.trim();
+      const name = document.getElementById('cName').value.trim();
+      const email = document.getElementById('cEmail').value.trim();
+      const message = document.getElementById('cMsg').value.trim();
 
       if (!name || !email || !message) return;
 
-      ideSubmitBtn.disabled = true;
-      ideSubmitBtn.innerHTML = '<span class="btn-prompt">$</span> sending...';
-      ideFormStatus.style.display = 'none';
+      // Activate Skeleton Loader State
+      formSubmitButton.disabled = true;
+      formSubmitButton.style.display = 'none';
+      if (formSkeleton) formSkeleton.style.display = 'block';
+      formNotification.style.display = 'none';
 
       try {
         const res = await fetch('/api/contact', {
@@ -165,54 +163,88 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = await res.json();
 
+        // Small simulated delay to demonstrate skeleton loader
+        await new Promise(r => setTimeout(r, 600));
+
         if (res.ok && data.success) {
-          ideFormStatus.className = 'form-status-line success';
-          ideFormStatus.innerText = `[SUCCESS] Payload delivered. Melwin will reply to: ${email}`;
-          ideContactForm.reset();
+          formNotification.className = 'form-feedback-line success';
+          formNotification.innerText = `[SUCCESS] Payload delivered. Melwin will reply to: ${email}`;
+          contactForm.reset();
         } else {
-          ideFormStatus.className = 'form-status-line error';
-          ideFormStatus.innerText = `[ERROR] ${data.message || 'Delivery failed.'}`;
+          formNotification.className = 'form-feedback-line error';
+          formNotification.innerText = `[ERROR] ${data.message || 'Delivery failed.'}`;
         }
       } catch (err) {
-        ideFormStatus.className = 'form-status-line error';
-        ideFormStatus.innerText = `[ERROR] Network failure. Direct email: melwinsanthoah4096@gmail.com`;
+        formNotification.className = 'form-feedback-line error';
+        formNotification.innerText = `[ERROR] Connection error. Direct email: melwinsanthoah4096@gmail.com`;
       } finally {
-        ideSubmitBtn.disabled = false;
-        ideSubmitBtn.innerHTML = '<span class="btn-prompt">$</span> send --payload';
+        if (formSkeleton) formSkeleton.style.display = 'none';
+        formSubmitButton.style.display = 'inline-flex';
+        formSubmitButton.disabled = false;
       }
     });
   }
 
 });
 
-// Global Function for Interactive Project Directory Toggle
-function toggleProject(projectId) {
-  const el = document.getElementById(projectId);
+// Global Function: Project Directory Tree Expansion Toggle
+function toggleProjCard(id) {
+  const el = document.getElementById(id);
   if (!el) return;
 
   const isExpanded = el.classList.contains('expanded');
-  const toggleBtn = el.querySelector('.entry-toggle');
+  const toggleTxt = el.querySelector('.toggle-indicator');
 
   if (isExpanded) {
     el.classList.remove('expanded');
-    if (toggleBtn) toggleBtn.innerText = '[+]';
+    if (toggleTxt) toggleTxt.innerText = '[+]';
   } else {
     el.classList.add('expanded');
-    if (toggleBtn) toggleBtn.innerText = '[-]';
+    if (toggleTxt) toggleTxt.innerText = '[-]';
   }
 }
 
-// Global Function for Quick Clipboard Copy
-function copyText(text, btn) {
+// Global Function: Product Demo Tab Switcher
+function switchDemoTab(tabName, btn) {
+  const allTabs = document.querySelectorAll('.demo-tab');
+  allTabs.forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  const allPanels = document.querySelectorAll('.demo-view-panel');
+  allPanels.forEach(p => p.classList.remove('active'));
+
+  const activePanel = document.getElementById('demo-' + tabName);
+  if (activePanel) {
+    activePanel.classList.add('active');
+  }
+}
+
+// Global Function: Legal Policies Tab Switcher
+function switchLegalTab(tabName, btn) {
+  const allBtns = document.querySelectorAll('.legal-nav-btn');
+  allBtns.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const allPanes = document.querySelectorAll('.legal-tab-pane');
+  allPanes.forEach(p => p.classList.remove('active'));
+
+  const activePane = document.getElementById('legal-' + tabName);
+  if (activePane) {
+    activePane.classList.add('active');
+  }
+}
+
+// Global Function: Clipboard Copy Utility
+function copyValue(text, btn) {
   navigator.clipboard.writeText(text).then(() => {
-    const originalText = btn.innerText;
-    btn.innerText = 'copied!';
-    btn.style.borderColor = '#10b981';
-    btn.style.color = '#10b981';
+    const orig = btn.innerText;
+    btn.innerText = 'copied';
+    btn.style.color = '#ff6b00';
+    btn.style.borderColor = '#ff6b00';
     setTimeout(() => {
-      btn.innerText = originalText;
-      btn.style.borderColor = '';
+      btn.innerText = orig;
       btn.style.color = '';
-    }, 1800);
+      btn.style.borderColor = '';
+    }, 1500);
   });
 }
