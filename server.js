@@ -148,12 +148,16 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`====================================================`);
-  console.log(`🚀 Melwin Santhosh Portfolio Server running!`);
-  console.log(`📡 Local URL:    http://localhost:${PORT}`);
-  console.log(`📄 Download CV:  http://localhost:${PORT}/api/cv`);
-  console.log(`⚡ Node Version: ${process.version}`);
-  console.log(`====================================================`);
-});
+// Start server when run directly
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`====================================================`);
+    console.log(`🚀 Melwin Santhosh Portfolio Server running!`);
+    console.log(`📡 Local URL:    http://localhost:${PORT}`);
+    console.log(`📄 Download CV:  http://localhost:${PORT}/api/cv`);
+    console.log(`⚡ Node Version: ${process.version}`);
+    console.log(`====================================================`);
+  });
+}
+
+module.exports = app;
