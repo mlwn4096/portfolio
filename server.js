@@ -32,32 +32,32 @@ const cvData = {
   profile: "Integrated MCA student at St. Joseph’s College of Engineering and Technology (SJCET), Palai, with a strong interest in Artificial Intelligence, software development, web technologies, and multimedia. Interested in learning through practical projects and building technology-focused products and initiatives. Currently contributing to the development of PRAX, an invite-only professional learning and collaboration initiative by Vantcrest Labs Pvt. Ltd.",
   education: [
     {
-      degree: "Integrated Master of Computer Applications (MCA)",
+      degree: "Integrated MCA",
       institution: "St. Joseph's College of Engineering and Technology (SJCET), Palai",
-      period: "2025 - 2030",
-      details: "Focus on Computer Applications, Software Engineering, and Artificial Intelligence"
+      period: "2025–2030",
+      details: "Areas of interest: Artificial Intelligence and software development"
     },
     {
-      degree: "Senior Secondary - CBSE (Class XII)",
+      degree: "Class XII — CBSE",
       institution: "SKPS, Kaduthuruthy",
       period: "2025"
     },
     {
-      degree: "Secondary - CBSE (Class X)",
+      degree: "Class X — CBSE",
       institution: "SKPS, Kaduthuruthy",
       period: "2023"
     }
   ],
   experience: [
     {
-      role: "Core Platform Contributor",
-      organization: "PRAX : Initiative by Vantcrest Labs Pvt. Ltd. (Professional Learning & Collaboration Community)",
+      role: "Platform Contributor",
+      organization: "PRAX — Initiative by Vantcrest Labs Pvt. Ltd.",
       period: "2026 - Present",
       highlights: [
         "Contributing to the development of an invite-only professional community focused on practical experience, continuous learning, and real-world exposure.",
-        "Working on a platform that enables members to learn, build projects, document experiences, collaborate, receive feedback, and pursue opportunities.",
-        "Contributing to community structure, member progression, project/challenge systems, mentorship, and opportunities framework.",
-        "Bridging practical learning with real-world engineering standards and collaborative product delivery."
+        "Working on platform modules that enable members to learn, build projects, document experiences, collaborate, receive feedback, and pursue opportunities.",
+        "Contributing to community structure, member progression, project/challenge systems, and mentorship frameworks.",
+        "Exploring connections between practical project experience and professional opportunities."
       ]
     }
   ],
