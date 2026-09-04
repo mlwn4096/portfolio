@@ -22,9 +22,10 @@ export function App() {
   const tickerItems = [
     'AI × MULTIMEDIA',
     'SJCET PALAI',
-    'HEAD OF PRAX',
-    'NEUROBOTS',
-    'MCA 2025-2030',
+    'PRAX PLATFORM CONTRIBUTOR',
+    'NEUROBOTS ZERO TRUST',
+    'INTEGRATED MCA 2025-2030',
+    'LINUX & SHELL SYSTEMS',
   ];
 
   return (
@@ -40,6 +41,12 @@ export function App() {
         <Hero />
         <AboutSection />
         <PraxSection />
+        <MarqueeBanner
+          items={['HACKATHONS', 'IBM WATSONX', 'GNOSIS AI', 'HASHITUP 24H', 'INSENDIUM BEST TEAM', 'PRAYANA SUMMIT']}
+          bg="bg-neo-accent"
+          textColor="text-white"
+          borderB={true}
+        />
         <ExperienceSection />
         <ProjectsSection />
         <ContactSection />

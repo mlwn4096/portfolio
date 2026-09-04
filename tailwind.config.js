@@ -18,9 +18,10 @@ export default {
         },
       },
       fontFamily: {
-        display: ['Syne', 'sans-serif'],
-        body: ['Plus Jakarta Sans', 'sans-serif'],
-        mono: ['Courier New', 'Courier', 'monospace'],
+        sans: ['"Space Grotesk"', 'sans-serif'],
+        display: ['"Space Grotesk"', 'sans-serif'],
+        body: ['"Space Grotesk"', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
       boxShadow: {
         'neo-sm': '4px 4px 0px 0px #000000',
@@ -28,9 +29,13 @@ export default {
         'neo': '8px 8px 0px 0px #000000',
         'neo-lg': '12px 12px 0px 0px #000000',
         'neo-xl': '16px 16px 0px 0px #000000',
+        'neo-massive': '20px 20px 0px 0px #000000',
+        'neo-white-sm': '4px 4px 0px 0px #FFFFFF',
         'neo-white': '8px 8px 0px 0px #FFFFFF',
+        'neo-white-lg': '12px 12px 0px 0px #FFFFFF',
         'neo-yellow': '6px 6px 0px 0px #FFD93D',
         'neo-accent': '6px 6px 0px 0px #FF6B6B',
+        'neo-muted': '6px 6px 0px 0px #C4B5FD',
       },
       borderWidth: {
         '3': '3px',

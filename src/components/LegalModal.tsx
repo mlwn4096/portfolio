@@ -105,7 +105,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                   3. Accuracy of Student Information
                 </h3>
                 <p>
-                  All details concerning academic status, hackathon participations (INCEPTA 2026, HashItUp 2025), workshops (ICSET watsonx Orchestrate), college events (INSENDIUM 10.0, PRAYANA 2025), and leadership as Head of PRAX represent authentic, verified student records. No claims of senior industry employment or commercial vendor status are made.
+                  All details concerning academic status, hackathon participations (INCEPTA 2026, HashItUp 2025), workshops (ICSET watsonx Orchestrate), college events (INSENDIUM 10.0, PRAYANA 2025), and contribution as Platform Contributor at PRAX (initiative by Vantcrest Labs Pvt. Ltd.) represent authentic, verified student records. No claims of senior industry employment or commercial vendor status are made.
                 </p>
               </div>
 
@@ -125,7 +125,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                   1. Information Collection
                 </h3>
                 <p>
-                  This portfolio website is a static site hosted at mlwn.runs-on.dev. It does not use intrusive tracking cookies, behavioral ad pixels, third-party analytics trackers, or commercial profiling scripts.
+                  This portfolio website is a static site. It does not use intrusive tracking cookies, behavioral ad pixels, third-party analytics trackers, or commercial profiling scripts.
                 </p>
               </div>
 
@@ -134,7 +134,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                   2. Communications & Direct Inquiries
                 </h3>
                 <p>
-                  If you choose to contact Melwin via the provided email address (melwinsanthosh@outlook.com), your email address and message contents are utilized solely to respond to your technical, academic, or collaborative inquiry. Your information is never sold, leased, or shared with third parties.
+                  If you choose to contact Melwin via the provided email address (melwinsanthoah4096@gmail.com), your email address and message contents are utilized solely to respond to your technical, academic, or collaborative inquiry. Your information is never sold, leased, or shared with third parties.
                 </p>
               </div>
 

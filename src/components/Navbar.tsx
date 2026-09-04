@@ -39,23 +39,31 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          <nav className="hidden md:flex items-center gap-1.5 lg:gap-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3 py-1.5 font-display font-extrabold text-xs uppercase tracking-wider text-black border-2 border-transparent hover:border-black hover:bg-neo-secondary hover:shadow-neo-sm transition-all focus:outline-none focus:border-black focus:bg-neo-secondary"
+                className="px-3 py-1.5 font-bold text-xs uppercase tracking-wider text-black border-2 border-transparent hover:border-black hover:bg-neo-secondary hover:shadow-neo-sm transition-all focus:outline-none focus:border-black focus:bg-neo-secondary active:translate-x-0.5 active:translate-y-0.5"
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Right Action Button */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Right Action Buttons */}
+          <div className="hidden md:flex items-center gap-2.5">
             <a
-              href="mailto:melwinsanthosh@outlook.com"
-              className="inline-flex items-center gap-2 px-4 py-2 border-3 border-black bg-neo-accent text-white font-display font-black text-xs uppercase tracking-wider shadow-neo-sm hover:-translate-y-0.5 hover:shadow-neo transition-all neo-press focus:outline-none"
+              href="/Melwin_Santhosh_CV.pdf"
+              download="Melwin_Santhosh_CV.pdf"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 border-4 border-black bg-white text-black font-black text-xs uppercase tracking-wider shadow-neo-sm hover:-translate-y-0.5 hover:shadow-neo transition-all neo-press focus:outline-none"
+            >
+              <span>CV [PDF]</span>
+            </a>
+
+            <a
+              href="mailto:melwinsanthoah4096@gmail.com"
+              className="inline-flex items-center gap-1.5 px-4 py-2 border-4 border-black bg-neo-accent text-white font-black text-xs uppercase tracking-wider shadow-neo-sm hover:-translate-y-0.5 hover:shadow-neo transition-all neo-press focus:outline-none"
             >
               <span>GET IN TOUCH</span>
               <ArrowUpRightIcon className="w-4 h-4 text-white" />
@@ -66,7 +74,7 @@ export const Navbar: React.FC = () => {
           <div className="flex md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 border-3 border-black bg-neo-secondary shadow-neo-sm focus:outline-none"
+              className="p-2 border-4 border-black bg-neo-secondary shadow-neo-sm focus:outline-none active:translate-x-0.5 active:translate-y-0.5"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
             >
@@ -78,21 +86,29 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t-4 border-black bg-[#FFFDF5] p-6 space-y-3">
+        <div className="md:hidden border-t-4 border-black bg-[#FFFDF5] p-6 space-y-3 shadow-neo-lg">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-left py-3 px-4 border-3 border-black bg-white font-display font-extrabold text-sm uppercase tracking-wider text-black shadow-neo-sm hover:bg-neo-secondary active:translate-x-1"
+              className="block w-full text-left py-3 px-4 border-4 border-black bg-white font-black text-sm uppercase tracking-wider text-black shadow-neo-sm hover:bg-neo-secondary active:translate-x-1"
             >
               {link.name}
             </a>
           ))}
           <a
-            href="mailto:melwinsanthosh@outlook.com"
+            href="/Melwin_Santhosh_CV.pdf"
+            download="Melwin_Santhosh_CV.pdf"
             onClick={() => setMobileMenuOpen(false)}
-            className="block w-full text-center py-3 px-4 border-3 border-black bg-neo-accent text-white font-display font-black text-sm uppercase tracking-wider shadow-neo-sm active:translate-x-1"
+            className="block w-full text-center py-3 px-4 border-4 border-black bg-white text-black font-black text-sm uppercase tracking-wider shadow-neo-sm active:translate-x-1"
+          >
+            DOWNLOAD CV [PDF]
+          </a>
+          <a
+            href="mailto:melwinsanthoah4096@gmail.com"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block w-full text-center py-3 px-4 border-4 border-black bg-neo-accent text-white font-black text-sm uppercase tracking-wider shadow-neo-sm active:translate-x-1"
           >
             GET IN TOUCH
           </a>
