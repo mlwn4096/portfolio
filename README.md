@@ -1,9 +1,8 @@
-# Melwin Santhosh — Developer Portfolio & CV Portal (Node.js & Express)
+# Melwin Santhosh — Developer Portfolio & CV Portal (Neo-Brutalism Edition)
 
+🌐 **Live Website**: [https://www.mlwn.in/](https://www.mlwn.in/)
 
-link: https://www.mlwn.in/
-
-A fast, responsive, terminal-inspired developer portfolio web application built with **Node.js** and **Express**, featuring an interactive in-browser CLI console, project showcases, experience timeline, and built-in ATS-compliant CV download API.
+A bold, high-contrast **Neo-Brutalist** developer portfolio and systems portal built with modern frontend engineering and backed by **Node.js** & **Express**. Features the raw, tactile aesthetic of neo-brutalism (Space Grotesk typography, pure ink borders, solid 45-degree offset shadows, mechanical button clicks, and physical card lifts) alongside serverless REST resume endpoints and direct ATS CV download delivery.
 
 ---
 
@@ -30,15 +29,17 @@ Open:
 
 ```text
 portfolio-nodejs/
-├── server.js              # Express web server & API routes
+├── server.js              # Express web server & serverless API routes
+├── vercel.json            # Vercel deployment configuration
 ├── package.json           # Project dependencies & scripts
 ├── public/
-│   ├── index.html         # Developer portfolio UI with terminal simulator
-│   ├── style.css          # Modern responsive dark theme styling
-│   ├── script.js          # Interactive CLI simulator & AJAX contact form
+│   ├── index.html         # Neo-brutalist single-page application entrypoint
+│   ├── assets/            # Production bundled JS & CSS assets
 │   ├── Melwin_Santhosh_CV.pdf  # ATS-compliant single-page CV
 │   ├── cv.html            # Standalone printable HTML CV
-│   └── cv.txt             # Plain ASCII text resume
+│   ├── cv.txt             # Plain ASCII text resume
+│   ├── favicon.svg        # Neo-brutalist geometric favicon
+│   └── icons.svg          # High-contrast geometric vector sprites
 └── README.md              # Documentation
 ```
 
