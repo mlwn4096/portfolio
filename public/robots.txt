@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /favicon*
+Allow: /avatar.png
+Allow: /android-chrome*
+Allow: /apple-touch-icon.png
+
+Sitemap: https://mlwn.in/sitemap.xml

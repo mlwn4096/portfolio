@@ -87,7 +87,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                   1. Acceptance of Terms
                 </h3>
                 <p>
-                  By accessing and browsing this portfolio website (mlwn.runs-on.dev), you acknowledge and agree to comply with these terms. This site represents the personal academic portfolio and experimental project showcase of Melwin Santhosh, an Integrated MCA student at St Joseph's College of Engineering and Technology (SJCET), Palai.
+                  By accessing and browsing this portfolio website (mlwn.in), you acknowledge and agree to comply with these terms. This site represents the personal academic portfolio and experimental project showcase of Melwin Santhosh, an Integrated MCA student at St Joseph's College of Engineering and Technology (SJCET), Palai.
                 </p>
               </div>
 
@@ -162,7 +162,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({
         {/* Modal Footer */}
         <div className="border-t-4 border-black bg-white p-4 flex justify-between items-center">
           <span className="text-xs font-mono font-bold text-black/60">
-            mlwn.runs-on.dev • Palai, Kerala
+            mlwn.in • Palai, Kerala
           </span>
           <button
             onClick={onClose}
