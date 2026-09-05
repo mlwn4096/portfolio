@@ -27,6 +27,7 @@ const cvData = {
   location: "Palai, Kerala, India",
   email: "melwinsanthoah4096@gmail.com",
   phone: "+91 6235764096",
+  whatsapp: "https://wa.me/916235764096",
   linkedin: "https://www.linkedin.com/in/melwin-santhosh-784550378",
   github: "https://github.com/mlwn4096",
   profile: "Integrated MCA student at St. Joseph’s College of Engineering and Technology (SJCET), Palai, with a strong interest in Artificial Intelligence, software development, web technologies, and multimedia. Interested in learning through practical projects and building technology-focused products and initiatives. Currently contributing to the development of PRAX, an invite-only professional learning and collaboration initiative by Vantcrest Labs Pvt. Ltd.",
