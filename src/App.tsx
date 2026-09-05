@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { MarqueeBanner } from './components/MarqueeBanner';
 import { Hero } from './components/Hero';
@@ -9,10 +9,31 @@ import { ExperienceSection } from './components/ExperienceSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { LegalModal } from './components/LegalModal';
+import { PortfolioSkeleton } from './components/PortfolioSkeleton';
+import { NotFound } from './components/NotFound';
 
 export function App() {
   const [legalModalOpen, setLegalModalOpen] = useState(false);
   const [legalTab, setLegalTab] = useState<'terms' | 'privacy'>('terms');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isNotFound, setIsNotFound] = useState(false);
+
+  useEffect(() => {
+    // Check if the current pathname is a 404 route
+    const path = window.location.pathname;
+    if (path !== '/' && path !== '' && path !== '/index.html') {
+      setIsNotFound(true);
+      setIsLoading(false);
+      return;
+    }
+
+    // Skeleton loader timer for smooth initial load
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 700);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleOpenLegal = (tab: 'terms' | 'privacy') => {
     setLegalTab(tab);
@@ -27,6 +48,14 @@ export function App() {
     'INTEGRATED MCA 2025-2030',
     'LINUX & SHELL SYSTEMS',
   ];
+
+  if (isNotFound) {
+    return <NotFound />;
+  }
+
+  if (isLoading) {
+    return <PortfolioSkeleton />;
+  }
 
   return (
     <div className="min-h-screen bg-[#FFFDF5] text-black font-body flex flex-col selection:bg-neo-secondary selection:text-black">

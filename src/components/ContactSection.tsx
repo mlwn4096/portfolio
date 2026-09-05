@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GitHubIcon, LinkedInIcon, MailIcon, ArrowUpRightIcon } from './Icons';
+import { GitHubIcon, LinkedInIcon, MailIcon, ArrowUpRightIcon, WhatsAppIcon } from './Icons';
 
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -9,6 +9,7 @@ export const ContactSection: React.FC = () => {
 
   const email = 'melwinsanthoah4096@gmail.com';
   const phone = '+91 6235764096';
+  const whatsappUrl = 'https://wa.me/916235764096';
 
   const copyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -89,7 +90,19 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              {/* Direct WhatsApp Action Link */}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-4 border-3 border-black bg-[#25D366] text-black font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-neo-sm hover:bg-black hover:text-white transition-all neo-press"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+                <span>Message Melwin Santhosh on WhatsApp</span>
+                <ArrowUpRightIcon className="w-3.5 h-3.5" />
+              </a>
+
+              <div className="flex flex-wrap items-center gap-3 pt-1">
                 <button
                   onClick={copyEmail}
                   className="flex-1 py-3 px-4 border-3 border-black bg-neo-secondary font-black text-xs uppercase tracking-wider text-black shadow-neo-sm hover:bg-black hover:text-white transition-all neo-press"
@@ -106,7 +119,7 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* Network Badges */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <a
                 href="https://github.com/mlwn4096"
                 target="_blank"
@@ -134,10 +147,23 @@ export const ContactSection: React.FC = () => {
               </a>
 
               <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-4 border-black bg-white p-3 shadow-neo-sm flex items-center justify-between hover:bg-[#25D366] hover:text-black transition-all neo-press group"
+              >
+                <div className="flex items-center gap-2">
+                  <WhatsAppIcon className="w-4 h-4" />
+                  <span className="font-black text-xs uppercase">WhatsApp</span>
+                </div>
+                <ArrowUpRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+
+              <a
                 href="tel:+916235764096"
                 className="border-4 border-black bg-white p-3 shadow-neo-sm flex items-center justify-between hover:bg-black hover:text-white transition-all neo-press group"
               >
-                <span className="font-black text-xs uppercase">Call Melwin</span>
+                <span className="font-black text-xs uppercase">Call</span>
                 <ArrowUpRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>

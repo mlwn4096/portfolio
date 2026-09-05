@@ -2,12 +2,6 @@ import React from 'react';
 import { CommunityIcon } from './Icons';
 
 export const PraxSection: React.FC = () => {
-  const workflowSteps = [
-    { step: '01', title: 'LEARN', color: 'bg-white text-black' },
-    { step: '02', title: 'BUILD', color: 'bg-neo-secondary text-black' },
-    { step: '03', title: 'COLLABORATE', color: 'bg-neo-accent text-white' },
-    { step: '04', title: 'DOCUMENT', color: 'bg-neo-muted text-black' },
-  ];
 
   const modules = [
     'Member Progression Systems',
@@ -71,27 +65,6 @@ export const PraxSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Workflow Sequence Strip */}
-          <div className="mt-12 pt-8 border-t-4 border-white/20">
-            <span className="text-xs font-black uppercase tracking-widest text-neo-secondary block mb-4">
-              THE CORE ITERATION CYCLE
-            </span>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {workflowSteps.map((item, idx) => (
-                <div
-                  key={idx}
-                  className={`border-4 border-black ${item.color} p-4 shadow-neo-sm flex items-center justify-between hover:-translate-y-1 transition-transform`}
-                >
-                  <span className="font-black text-base uppercase tracking-wider">
-                    {item.title}
-                  </span>
-                  <span className="font-mono text-sm font-black opacity-70">
-                    {item.step}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
 
         </div>
 
