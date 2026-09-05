@@ -12,10 +12,11 @@ import { LegalModal } from './components/LegalModal';
 import { PortfolioSkeleton } from './components/PortfolioSkeleton';
 import { NotFound } from './components/NotFound';
 
+export { PortfolioSkeleton, NotFound };
+
 export function App() {
   const [legalModalOpen, setLegalModalOpen] = useState(false);
   const [legalTab, setLegalTab] = useState<'terms' | 'privacy'>('terms');
-  const [isLoading, setIsLoading] = useState(true);
   const [isNotFound, setIsNotFound] = useState(false);
 
   useEffect(() => {
@@ -23,16 +24,7 @@ export function App() {
     const path = window.location.pathname;
     if (path !== '/' && path !== '' && path !== '/index.html') {
       setIsNotFound(true);
-      setIsLoading(false);
-      return;
     }
-
-    // Skeleton loader timer for smooth initial load
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 700);
-
-    return () => clearTimeout(timer);
   }, []);
 
   const handleOpenLegal = (tab: 'terms' | 'privacy') => {
@@ -51,10 +43,6 @@ export function App() {
 
   if (isNotFound) {
     return <NotFound />;
-  }
-
-  if (isLoading) {
-    return <PortfolioSkeleton />;
   }
 
   return (
