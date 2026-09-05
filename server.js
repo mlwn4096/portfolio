@@ -25,6 +25,7 @@ const cvData = {
   name: "Melwin Santhosh",
   tagline: "Integrated MCA Student | AI & Software Development",
   location: "Palai, Kerala, India",
+  website: "https://mlwn.in",
   email: "melwinsanthoah4096@gmail.com",
   phone: "+91 6235764096",
   whatsapp: "https://wa.me/916235764096",
