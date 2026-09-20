@@ -144,6 +144,30 @@ app.get('/health', (req, res) => {
   res.json({ status: 'healthy', uptime: process.uptime(), timestamp: new Date() });
 });
 
+// Asset safety handler: Never serve index.html for static asset requests to prevent MIME type crashes
+app.use((req, res, next) => {
+  if (req.path.startsWith('/assets/') || req.path.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico|json|map|pdf|txt|xml|webmanifest)$/i)) {
+    // If a JS asset was requested that was not found statically, serve the canonical working JS bundle
+    if (req.path.startsWith('/assets/') && req.path.endsWith('.js')) {
+      const canonicalJs = path.join(__dirname, 'public', 'assets', 'index-rMVczcx5.js');
+      if (fs.existsSync(canonicalJs)) {
+        res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+        return res.sendFile(canonicalJs);
+      }
+    }
+    // If a CSS asset was requested that was not found statically, serve the canonical working CSS bundle
+    if (req.path.startsWith('/assets/') && req.path.endsWith('.css')) {
+      const canonicalCss = path.join(__dirname, 'public', 'assets', 'index-KD1H7ggb.css');
+      if (fs.existsSync(canonicalCss)) {
+        res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+        return res.sendFile(canonicalCss);
+      }
+    }
+    return res.status(404).send('Asset not found');
+  }
+  next();
+});
+
 // Fallback to index.html for SPA/static routing
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
