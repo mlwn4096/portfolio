@@ -100,7 +100,10 @@ for (const img of requiredImages) {
 
 // Step 4: Keep all JS bundle aliases identical to avoid version desync
 try {
-  const canonicalJs = path.join(assetsDir, 'index-rMVczcx5.js');
+  const indexHtml = fs.readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf8');
+  const sm = indexHtml.match(/src="([^"]+\.js[^"]*)"/);
+  const activeScript = sm ? sm[1].split('?')[0].replace(/^\//, '') : 'assets/index-v9zL2PqM.js';
+  const canonicalJs = path.join(__dirname, 'public', activeScript);
   const canonicalContent = fs.readFileSync(canonicalJs, 'utf8');
   
   for (const jsFile of jsAssets) {
@@ -111,12 +114,12 @@ try {
       console.log(`🔄 Re-synced ${jsFile} to canonical bundle content`);
     }
   }
-  logPass("All JS bundle aliases synchronized to canonical content");
+  logPass(`All JS bundle aliases synchronized to ${path.basename(canonicalJs)}`);
 } catch (e) {
   logFail("Bundle alias synchronization", e.message);
 }
 
-// Step 5: Test live Server HTTP responses
+// Step 5: Test live Server HTTP responses, CORS, and Cache headers
 async function runServerTests() {
   const app = require('./server.js');
   const testPort = 3010;
@@ -125,11 +128,13 @@ async function runServerTests() {
     const server = app.listen(testPort, '127.0.0.1', async () => {
       try {
         const testEndpoints = [
-          { path: '/', expectStatus: 200, expectType: 'text/html' },
+          { path: '/', expectStatus: 200, expectType: 'text/html', checkNoCache: true },
           { path: '/health', expectStatus: 200, expectType: 'application/json' },
-          { path: '/assets/index-rMVczcx5.js', expectStatus: 200, expectType: 'application/javascript' },
+          { path: '/assets/index-v9zL2PqM.js', expectStatus: 200, expectType: 'application/javascript', checkCors: true },
+          { path: '/assets/index-rMVczcx5.js', expectStatus: 200, expectType: 'application/javascript', checkCors: true },
           { path: '/assets/index-DqYhfmSF.js', expectStatus: 200, expectType: 'application/javascript' },
           { path: '/assets/index-nonexistent-fallback-test.js', expectStatus: 200, expectType: 'application/javascript' },
+          { path: '/assets/index-v9zL2PqM.css', expectStatus: 200, expectType: 'text/css' },
           { path: '/assets/index-1sc7E3Jj.css', expectStatus: 200, expectType: 'text/css' },
           { path: '/assets/nonexistent-fallback-test.css', expectStatus: 200, expectType: 'text/css' },
           { path: '/melwin-blue.png', expectStatus: 200, expectType: 'image/png' },
@@ -139,11 +144,17 @@ async function runServerTests() {
         for (const ep of testEndpoints) {
           const res = await fetch(`http://127.0.0.1:${testPort}${ep.path}`);
           const ct = res.headers.get('content-type') || '';
+          const cors = res.headers.get('access-control-allow-origin');
+          const cc = res.headers.get('cache-control') || '';
           
           if (res.status !== ep.expectStatus) {
             logFail(`Server endpoint ${ep.path}: expected ${ep.expectStatus}, got ${res.status}`);
           } else if (ep.expectType && !ct.includes(ep.expectType)) {
             logFail(`Server endpoint ${ep.path}: expected type "${ep.expectType}", got "${ct}"`);
+          } else if (ep.checkCors && cors !== '*') {
+            logFail(`Server endpoint ${ep.path}: missing CORS Access-Control-Allow-Origin header (got "${cors}")`);
+          } else if (ep.checkNoCache && !cc.includes('no-store') && !cc.includes('no-cache')) {
+            logFail(`Server endpoint ${ep.path}: expected no-cache on HTML (got "${cc}")`);
           } else {
             logPass(`Server endpoint ${ep.path} -> ${res.status} (${ep.expectType})`);
           }

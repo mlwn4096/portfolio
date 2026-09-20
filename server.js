@@ -16,10 +16,29 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// CORS and Security Headers for all responses
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    } else if (filePath.includes('/assets/')) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+  }
+}));
 
 // Request logging
 app.use((req, res, next) => {
@@ -160,18 +179,24 @@ app.use((req, res, next) => {
   if (req.path.startsWith('/assets/') || req.path.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico|json|map|pdf|txt|xml|webmanifest)$/i)) {
     // If a JS asset was requested that was not found statically, serve the canonical working JS bundle
     if (req.path.startsWith('/assets/') && req.path.endsWith('.js')) {
-      const canonicalJs = path.join(__dirname, 'public', 'assets', 'index-rMVczcx5.js');
-      if (fs.existsSync(canonicalJs)) {
+      const canonicalJs = path.join(__dirname, 'public', 'assets', 'index-v9zL2PqM.js');
+      const fallbackJs = path.join(__dirname, 'public', 'assets', 'index-rMVczcx5.js');
+      const targetJs = fs.existsSync(canonicalJs) ? canonicalJs : fallbackJs;
+      if (fs.existsSync(targetJs)) {
         res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
-        return res.sendFile(canonicalJs);
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        return res.sendFile(targetJs);
       }
     }
     // If a CSS asset was requested that was not found statically, serve the canonical working CSS bundle
     if (req.path.startsWith('/assets/') && req.path.endsWith('.css')) {
-      const canonicalCss = path.join(__dirname, 'public', 'assets', 'index-KD1H7ggb.css');
-      if (fs.existsSync(canonicalCss)) {
+      const canonicalCss = path.join(__dirname, 'public', 'assets', 'index-v9zL2PqM.css');
+      const fallbackCss = path.join(__dirname, 'public', 'assets', 'index-1sc7E3Jj.css');
+      const targetCss = fs.existsSync(canonicalCss) ? canonicalCss : fallbackCss;
+      if (fs.existsSync(targetCss)) {
         res.setHeader('Content-Type', 'text/css; charset=UTF-8');
-        return res.sendFile(canonicalCss);
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        return res.sendFile(targetCss);
       }
     }
     return res.status(404).send('Asset not found');
@@ -181,6 +206,9 @@ app.use((req, res, next) => {
 
 // Fallback to index.html for SPA/static routing
 app.use((req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
