@@ -1,6 +1,17 @@
-const express = require('express');
 const path = require('path');
 const fs = require('fs');
+
+// Ensure module resolution fallback if node_modules is located in tests/
+try {
+  require.resolve('express');
+} catch (e) {
+  const fallbackModules = path.join(__dirname, 'tests', 'node_modules');
+  if (fs.existsSync(fallbackModules)) {
+    module.paths.push(fallbackModules);
+  }
+}
+
+const express = require('express');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
