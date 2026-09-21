@@ -98,7 +98,7 @@ for (const img of requiredImages) {
   }
 }
 
-// Step 4: Keep all JS bundle aliases identical to avoid version desync
+// Step 4: Keep all JS and CSS bundle aliases identical to avoid version desync
 try {
   const indexHtml = fs.readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf8');
   const sm = indexHtml.match(/src="([^"]+\.js[^"]*)"/);
@@ -115,11 +115,39 @@ try {
     }
   }
   logPass(`All JS bundle aliases synchronized to ${path.basename(canonicalJs)}`);
+
+  const cm = indexHtml.match(/href="([^"]+\.css[^"]*)"/);
+  const activeCss = cm ? cm[1].split('?')[0].replace(/^\//, '') : 'assets/index-v9zL2PqM.css';
+  const canonicalCss = path.join(__dirname, 'public', activeCss);
+  const canonicalCssContent = fs.readFileSync(canonicalCss, 'utf8');
+  const cssAssets = fs.readdirSync(assetsDir).filter(f => f.endsWith('.css'));
+
+  for (const cssFile of cssAssets) {
+    const p = path.join(assetsDir, cssFile);
+    const content = fs.readFileSync(p, 'utf8');
+    if (content !== canonicalCssContent) {
+      fs.writeFileSync(p, canonicalCssContent, 'utf8');
+      console.log(`🔄 Re-synced ${cssFile} to canonical CSS content`);
+    }
+  }
+  logPass(`All CSS bundle aliases synchronized to ${path.basename(canonicalCss)}`);
 } catch (e) {
   logFail("Bundle alias synchronization", e.message);
 }
 
-// Step 5: Test live Server HTTP responses, CORS, and Cache headers
+// Step 5: Run Theme Toggle and Dark Mode Contrast test suite
+try {
+  const { execSync } = require('child_process');
+  const testScript = path.join(__dirname, 'tests', 'test_theme_and_contrast.cjs');
+  if (fs.existsSync(testScript)) {
+    execSync(`NODE_PATH="${path.join(__dirname, 'tests', 'node_modules')}" node "${testScript}"`, { encoding: 'utf8' });
+    logPass("Theme toggle & dark mode contrast test suite (0 unreadable elements, full interactivity)");
+  }
+} catch (e) {
+  logFail("Theme toggle & dark mode contrast test suite", e.stdout || e.message);
+}
+
+// Step 6: Test live Server HTTP responses, CORS, and Cache headers
 async function runServerTests() {
   const app = require('./server.js');
   const testPort = 3010;

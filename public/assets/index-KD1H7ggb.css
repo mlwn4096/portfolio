@@ -2,8 +2,12 @@
 
 .rounded-full{border-radius:9999px}.circle-bubble{border-radius:9999px;aspect-ratio:1/1;overflow:hidden}
 /* ==========================================================================
-   Dark Mode Theme: Light Dark Maroon / Burgundy
-   Only turns the white/cream parts into light dark maroon/burgundy
+   Dark Mode Theme: Refined Burgundy (Maroon) & Light Rose Palette
+   - Turns cream/white surfaces into rich velvety burgundy (#240a15 & #3d1324)
+   - Converts all dark text to high-contrast warm rose ivory (#FFEBF0),
+     blush pink (#FBCFE8), and muted plum rose (#E09FB2)
+   - Preserves yellow (#FFD93D) and coral (#FF6B6B) brand accents
+   - Fixes all cards inside #contact and featured sections for 100% legibility
    ========================================================================== */
 html.dark {
   color-scheme: dark;
@@ -12,63 +16,147 @@ html.dark {
 html.dark body,
 html.dark .bg-\[\#FFFDF5\],
 html.dark .bg-grid-pattern {
-  background-color: #2d0e1a !important;
-  color: #FFFDF5 !important;
+  background-color: #240a15 !important;
+  color: #FFEBF0 !important;
 }
 
-/* White surfaces/cards/buttons become light dark maroon/burgundy */
-html.dark .bg-white {
-  background-color: #421526 !important;
-  color: #FFFDF5 !important;
+html.dark .bg-grid-pattern {
+  background-image: linear-gradient(90deg, rgba(255, 235, 240, 0.05) 1px, transparent 1px),
+                    linear-gradient(rgba(255, 235, 240, 0.05) 1px, transparent 1px) !important;
 }
 
 html.dark header.bg-\[\#FFFDF5\],
 html.dark header {
-  background-color: #260b16 !important;
+  background-color: #1e0811 !important;
+}
+
+/* White cards become rich velvety dark burgundy */
+html.dark .bg-white {
+  background-color: #3d1324 !important;
+  color: #FFEBF0 !important;
 }
 
 html.dark .bg-white\/80 {
-  background-color: rgba(66, 21, 38, 0.85) !important;
+  background-color: rgba(61, 19, 36, 0.85) !important;
 }
 
-/* Form controls on dark burgundy */
+/* Form controls on burgundy surfaces */
 html.dark input,
 html.dark textarea {
-  background-color: #36101f !important;
-  color: #FFFDF5 !important;
+  background-color: #2b0d19 !important;
+  color: #FFEBF0 !important;
   border-color: #000000 !important;
 }
 
 html.dark input::placeholder,
 html.dark textarea::placeholder {
-  color: rgba(255, 253, 245, 0.5) !important;
+  color: rgba(255, 235, 240, 0.55) !important;
 }
 
-/* Text readability on burgundy */
+html.dark input:focus,
+html.dark textarea:focus {
+  background-color: #4a182c !important;
+  color: #FFEBF0 !important;
+}
+
+/* Primary text: Warm rose-tinted ivory (14:1 contrast on burgundy) */
 html.dark .text-black {
-  color: #FFFDF5 !important;
+  color: #FFEBF0 !important;
 }
 
+/* Secondary & subtitle text: Soft blush rose */
+html.dark .text-black\/85,
 html.dark .text-black\/80,
-html.dark .text-black\/70,
-html.dark .text-black\/60 {
-  color: rgba(255, 253, 245, 0.85) !important;
+html.dark .text-black\/75,
+html.dark .text-black\/70 {
+  color: #FBCFE8 !important;
 }
 
-html.dark .text-black\/40,
-html.dark .text-black\/50 {
-  color: rgba(255, 253, 245, 0.65) !important;
+/* Muted metadata & detail text: Muted plum rose */
+html.dark .text-black\/60,
+html.dark .text-black\/50,
+html.dark .text-black\/40 {
+  color: #E09FB2 !important;
 }
 
-/* Maintain brand colors on badges & colored elements */
-html.dark .bg-neo-secondary,
-html.dark .bg-neo-secondary * {
+/* Big outlined typography outlines in matching blush rose */
+html.dark .text-stroke-black-3 {
+  -webkit-text-stroke: 3px #FFEBF0 !important;
+}
+
+/* SVG fills and icons */
+html.dark .fill-black {
+  fill: #FFEBF0 !important;
+}
+
+/* Brand badges: Bright yellow elements stay yellow with crisp black text */
+html.dark .bg-neo-secondary {
+  background-color: rgb(255 217 61) !important;
   color: #000000 !important;
 }
+html.dark .bg-neo-secondary > * {
+  color: #000000;
+}
+html.dark .bg-neo-secondary .fill-black {
+  fill: #000000 !important;
+}
 
-html.dark .bg-neo-accent,
-html.dark .bg-neo-accent * {
+/* Coral accent badges */
+html.dark .bg-neo-accent {
+  background-color: rgb(255 107 107) !important;
   color: #ffffff !important;
+}
+
+/* CRITICAL FIX: Cards with bg-white nested inside bg-neo-secondary (e.g. #contact and hero) */
+html.dark .bg-neo-secondary .bg-white,
+html.dark .bg-white {
+  background-color: #3d1324 !important;
+  color: #FFEBF0 !important;
+}
+
+html.dark .bg-neo-secondary .bg-white *,
+html.dark .bg-white * {
+  color: #FFEBF0 !important;
+}
+
+html.dark .bg-neo-secondary .bg-white .text-black,
+html.dark .bg-white .text-black {
+  color: #FFEBF0 !important;
+}
+
+html.dark .bg-neo-secondary .bg-white .text-black\/85,
+html.dark .bg-neo-secondary .bg-white .text-black\/80,
+html.dark .bg-neo-secondary .bg-white .text-black\/75,
+html.dark .bg-neo-secondary .bg-white .text-black\/70,
+html.dark .bg-white .text-black\/85,
+html.dark .bg-white .text-black\/80,
+html.dark .bg-white .text-black\/75,
+html.dark .bg-white .text-black\/70 {
+  color: #FBCFE8 !important;
+}
+
+html.dark .bg-neo-secondary .bg-white .text-black\/60,
+html.dark .bg-neo-secondary .bg-white .text-black\/50,
+html.dark .bg-neo-secondary .bg-white .text-black\/40,
+html.dark .bg-white .text-black\/60,
+html.dark .bg-white .text-black\/50,
+html.dark .bg-white .text-black\/40 {
+  color: #E09FB2 !important;
+}
+
+/* Badges located inside cards retain their distinctive badge text */
+html.dark .bg-white .bg-neo-secondary,
+html.dark .bg-white .bg-neo-secondary * {
+  color: #000000 !important;
+}
+html.dark .bg-white .bg-neo-accent,
+html.dark .bg-white .bg-neo-accent * {
+  color: #ffffff !important;
+}
+
+/* Mobile drawer in dark mode */
+html.dark .md\:hidden.border-t-4 {
+  background-color: #1e0811 !important;
 }
 
 /* Retain bold neo-brutalist black borders and shadows */
@@ -78,14 +166,12 @@ html.dark .border-black {
 
 html.dark .shadow-neo,
 html.dark .shadow-neo-sm,
-html.dark .shadow-neo-md,
-html.dark .shadow-neo-lg,
-html.dark .shadow-neo-xl {
+html.dark .shadow-neo-md {
   box-shadow: 4px 4px 0px #000000 !important;
-}
-html.dark .shadow-neo-xl {
-  box-shadow: 8px 8px 0px #000000 !important;
 }
 html.dark .shadow-neo-lg {
   box-shadow: 6px 6px 0px #000000 !important;
+}
+html.dark .shadow-neo-xl {
+  box-shadow: 8px 8px 0px #000000 !important;
 }
