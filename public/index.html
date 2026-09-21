@@ -27,16 +27,10 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <script>
-      (function() {
-        try {
-          var t = localStorage.getItem('theme');
-          if (t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-        } catch (e) {}
-      })();
+      try {
+        localStorage.removeItem('theme');
+        document.documentElement.classList.remove('dark');
+      } catch (e) {}
     </script>
 
     <!-- Open Graph / Meta Protocol for Rich Search Results -->
@@ -62,123 +56,5 @@
   </head>
   <body class="bg-[#FFFDF5] text-black font-body antialiased selection:bg-neo-secondary selection:text-black min-h-screen overflow-x-hidden">
     <div id="root"></div>
-    <script>
-      (function() {
-        function setTheme(theme) {
-          try {
-            localStorage.setItem('theme', theme);
-          } catch(e) {}
-          if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-          updateThemeUI(theme === 'dark');
-        }
-
-        function updateThemeUI(isDark) {
-          var desktopBtn = document.getElementById('theme-toggle-desktop');
-          if (desktopBtn) {
-            var icon = desktopBtn.querySelector('.theme-icon');
-            var text = desktopBtn.querySelector('.theme-text');
-            if (icon) icon.textContent = isDark ? '☀️' : '🍷';
-            if (text) text.textContent = isDark ? 'LIGHT MODE' : 'BURGUNDY';
-            desktopBtn.setAttribute('title', isDark ? 'Switch to Light mode' : 'Switch to Burgundy (dark) mode');
-          }
-
-          var mobileBtn = document.getElementById('theme-toggle-mobile');
-          if (mobileBtn) {
-            var mIcon = mobileBtn.querySelector('.theme-icon');
-            if (mIcon) mIcon.textContent = isDark ? '☀️' : '🍷';
-            mobileBtn.setAttribute('title', isDark ? 'Switch to Light mode' : 'Switch to Burgundy (dark) mode');
-          }
-
-          var drawerBtn = document.getElementById('theme-toggle-drawer');
-          if (drawerBtn) {
-            var dText = drawerBtn.querySelector('.theme-drawer-text');
-            if (dText) dText.textContent = isDark ? '☀️ SWITCH TO LIGHT MODE' : '🍷 SWITCH TO BURGUNDY MODE';
-          }
-
-          var metaTheme = document.querySelector('meta[name="theme-color"]');
-          if (metaTheme) {
-            metaTheme.setAttribute('content', isDark ? '#240a15' : '#FFD93D');
-          }
-        }
-
-        window.__toggleTheme = function() {
-          var isDark = document.documentElement.classList.contains('dark');
-          setTheme(isDark ? 'light' : 'dark');
-        };
-
-        function injectButtons() {
-          var isDark = document.documentElement.classList.contains('dark');
-
-          // 1. Desktop header container
-          var desktopNav = document.querySelector('header .hidden.md\\:flex.items-center.gap-2\\.5');
-          if (desktopNav && !document.getElementById('theme-toggle-desktop')) {
-            var btn = document.createElement('button');
-            btn.id = 'theme-toggle-desktop';
-            btn.type = 'button';
-            btn.className = 'inline-flex items-center gap-1.5 px-3 py-2 border-4 border-black bg-neo-secondary text-black font-black text-xs uppercase tracking-wider shadow-neo-sm hover:-translate-y-0.5 hover:shadow-neo transition-all neo-press focus:outline-none cursor-pointer';
-            btn.setAttribute('aria-label', 'Toggle Light / Burgundy Theme');
-            btn.innerHTML = '<span class="theme-icon">' + (isDark ? '☀️' : '🍷') + '</span><span class="theme-text">' + (isDark ? 'LIGHT MODE' : 'BURGUNDY') + '</span>';
-            btn.onclick = window.__toggleTheme;
-            desktopNav.insertBefore(btn, desktopNav.firstChild);
-          }
-
-          // 2. Mobile header container
-          var mobileNav = document.querySelector('header .flex.md\\:hidden');
-          if (mobileNav && !document.getElementById('theme-toggle-mobile')) {
-            mobileNav.classList.add('items-center');
-            var mBtn = document.createElement('button');
-            mBtn.id = 'theme-toggle-mobile';
-            mBtn.type = 'button';
-            mBtn.className = 'p-2 mr-2 border-4 border-black bg-neo-secondary text-black shadow-neo-sm focus:outline-none active:translate-x-0.5 active:translate-y-0.5 cursor-pointer flex items-center justify-center';
-            mBtn.setAttribute('aria-label', 'Toggle Light / Burgundy Theme');
-            mBtn.innerHTML = '<span class="theme-icon text-base leading-none">' + (isDark ? '☀️' : '🍷') + '</span>';
-            mBtn.onclick = window.__toggleTheme;
-            mobileNav.insertBefore(mBtn, mobileNav.firstChild);
-          }
-
-          // 3. Mobile navigation drawer if opened
-          var drawer = document.querySelector('.md\\:hidden.border-t-4.border-black');
-          if (drawer && !document.getElementById('theme-toggle-drawer')) {
-            var dBtn = document.createElement('button');
-            dBtn.id = 'theme-toggle-drawer';
-            dBtn.type = 'button';
-            dBtn.className = 'block w-full text-center py-3 px-4 border-4 border-black bg-neo-secondary text-black font-black text-sm uppercase tracking-wider shadow-neo-sm active:translate-x-1 cursor-pointer';
-            dBtn.innerHTML = '<span class="theme-drawer-text">' + (isDark ? '☀️ SWITCH TO LIGHT MODE' : '🍷 SWITCH TO BURGUNDY MODE') + '</span>';
-            dBtn.onclick = window.__toggleTheme;
-            drawer.insertBefore(dBtn, drawer.firstChild);
-          }
-
-          // 4. 404 page header
-          var header404 = document.querySelector('header button');
-          if (header404 && !document.getElementById('theme-toggle-desktop') && !document.querySelector('header nav')) {
-            var p = header404.parentElement;
-            if (p && !p.querySelector('#theme-toggle-desktop')) {
-              var b404 = document.createElement('button');
-              b404.id = 'theme-toggle-desktop';
-              b404.type = 'button';
-              b404.className = 'border-3 border-black bg-neo-secondary px-3 py-1.5 font-black text-xs uppercase tracking-wider shadow-neo-sm hover:bg-black hover:text-white transition-all neo-press flex items-center gap-1.5 mr-2 cursor-pointer';
-              b404.innerHTML = '<span class="theme-icon">' + (isDark ? '☀️' : '🍷') + '</span><span class="theme-text">' + (isDark ? 'LIGHT' : 'BURGUNDY') + '</span>';
-              b404.onclick = window.__toggleTheme;
-              p.insertBefore(b404, header404);
-            }
-          }
-        }
-
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', injectButtons);
-        } else {
-          injectButtons();
-        }
-
-        var observer = new MutationObserver(function() {
-          injectButtons();
-        });
-        observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
-      })();
-    </script>
   </body>
 </html>

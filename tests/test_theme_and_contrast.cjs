@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { JSDOM } = require('./node_modules/jsdom');
 
-console.log("\n🧪 RUNNING THEME TOGGLE & BURGUNDY CONTRAST TEST SUITE\n");
+console.log("\n🧪 RUNNING CLEAN LIGHT PORTFOLIO VERIFICATION SUITE\n");
 
 const rootDir = path.resolve(__dirname, '..');
 const html = fs.readFileSync(path.join(rootDir, 'public', 'index.html'), 'utf8');
@@ -33,94 +33,46 @@ setTimeout(() => {
     }
   }
 
-  // 1. Verify buttons mounted
-  const desktopToggle = doc.getElementById('theme-toggle-desktop');
-  const mobileToggle = doc.getElementById('theme-toggle-mobile');
-  assert(!!desktopToggle, "Desktop theme toggle button mounted in header");
-  assert(!!mobileToggle, "Mobile theme toggle button mounted in header");
+  // 1. Verify dark mode is completely absent
+  assert(!doc.documentElement.classList.contains('dark'), "HTML element does NOT have 'dark' class");
+  assert(!doc.getElementById('theme-toggle-desktop'), "No desktop theme toggle button present");
+  assert(!doc.getElementById('theme-toggle-mobile'), "No mobile theme toggle button present");
+  assert(!doc.getElementById('theme-toggle-drawer'), "No drawer theme toggle button present");
+  assert(!cssCode.includes('html.dark'), "Stylesheet has zero 'html.dark' rules");
 
-  // 2. Test initial Light Mode
-  assert(!doc.documentElement.classList.contains('dark'), "Initial state is Light mode");
-  assert(desktopToggle.textContent.includes("BURGUNDY"), "Desktop button invites switch to BURGUNDY");
-
-  // 3. Toggle to Burgundy mode
-  desktopToggle.click();
-  assert(doc.documentElement.classList.contains('dark'), "Dark mode enabled on click");
-  assert(desktopToggle.textContent.includes("LIGHT MODE"), "Desktop button text updated to LIGHT MODE");
-  assert(win.localStorage.getItem('theme') === 'dark', "LocalStorage theme saved as 'dark'");
-
-  // 4. Contrast audit in Burgundy mode
-  const allTextElements = doc.querySelectorAll('p, span, h1, h2, h3, h4, h5, h6, a, button, label, input, textarea');
-  const unreadable = [];
-
-  allTextElements.forEach(el => {
-    if (el.children.length > 0 && ['DIV', 'A', 'BUTTON', 'LABEL'].includes(el.tagName)) return;
-    const text = (el.textContent || '').trim();
-    if (!text || text.length > 80) return;
-
-    const style = win.getComputedStyle(el);
-    let parent = el;
-    let bg = style.backgroundColor;
-    while (parent && (!bg || bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent')) {
-      parent = parent.parentElement;
-      if (parent) bg = win.getComputedStyle(parent).backgroundColor;
-    }
-
-    const isBlackText = style.color === 'rgb(0, 0, 0)' || style.color === '#000000';
-    const isBurgundyBg = bg && (
-      bg.includes('rgb(61, 19, 36)') ||  // #3d1324
-      bg.includes('rgb(36, 10, 21)') ||  // #240a15
-      bg.includes('rgb(30, 8, 17)')  ||  // #1e0811
-      bg.includes('rgb(43, 13, 25)')     // #2b0d19
-    );
-
-    if (isBlackText && isBurgundyBg) {
-      unreadable.push({ text: text.slice(0, 30), color: style.color, bg, class: el.className });
-    }
+  // 2. Verify all core sections render
+  const sections = ['#about', '#prax', '#experience', '#projects', '#contact'];
+  sections.forEach(secId => {
+    const el = doc.querySelector(secId);
+    assert(!!el, `Core section ${secId} rendered properly`);
   });
 
-  assert(unreadable.length === 0, `Contrast audit: 0 unreadable dark-on-dark elements found (actual: ${unreadable.length})`);
-  if (unreadable.length > 0) {
-    console.error("Unreadable elements:", unreadable);
-  }
+  // 3. Verify header and brand navigation
+  const header = doc.querySelector('header');
+  assert(!!header, "Header rendered");
+  const logo = header ? header.querySelector('a[aria-label="Melwin Santhosh Homepage"]') : null;
+  assert(!!logo, "MLWN logo link present");
 
-  // 5. Test contact form labels specifically
-  const formLabels = doc.querySelectorAll('#contact form label');
-  let labelsReadable = true;
-  formLabels.forEach(lbl => {
-    const col = win.getComputedStyle(lbl).color;
-    if (col === 'rgb(0, 0, 0)') labelsReadable = false;
-  });
-  assert(labelsReadable && formLabels.length > 0, "Contact form labels have light rose matching color");
+  // 4. Verify CV and Contact action buttons
+  const cvBtn = doc.querySelector('a[href="/Melwin_Santhosh_CV.pdf"]');
+  assert(!!cvBtn, "CV [PDF] download button present");
 
-  // 6. Test mobile menu drawer toggle
-  const menuBtn = doc.querySelector('header button[aria-label="Open menu"]');
-  if (menuBtn) {
-    menuBtn.click();
-    setTimeout(() => {
-      const drawerToggle = doc.getElementById('theme-toggle-drawer');
-      assert(!!drawerToggle, "Drawer theme toggle button mounted upon menu opening");
-      assert(drawerToggle.textContent.includes("LIGHT MODE"), "Drawer toggle shows switch to LIGHT MODE");
+  const getInTouchBtn = doc.querySelector('a[href="mailto:melwinsanthoah4096@gmail.com"]');
+  assert(!!getInTouchBtn, "GET IN TOUCH contact button present");
 
-      // 7. Toggle back to Light mode via drawer
-      drawerToggle.click();
-      assert(!doc.documentElement.classList.contains('dark'), "Switched back to Light mode via drawer");
-      assert(win.localStorage.getItem('theme') === 'light', "LocalStorage updated to 'light'");
+  // 5. Verify profile photo
+  const photo = doc.querySelector('img[src="/melwin-blue.png"]');
+  assert(!!photo, "Profile photo melwin-blue.png is preserved and rendered");
 
-      // 8. Photo check
-      const photo = doc.querySelector('img[src="/melwin-blue.png"]');
-      assert(!!photo, "Profile photo melwin-blue.png is preserved");
+  // 6. Verify contact form elements
+  const contactForm = doc.querySelector('#contact form');
+  assert(!!contactForm, "Contact dispatch form rendered");
 
-      if (!passed) {
-        console.error("\n❌ TEST SUITE FAILED!\n");
-        process.exit(1);
-      } else {
-        console.log("\n🎉 ALL THEME & CONTRAST TESTS PASSED!\n");
-        process.exit(0);
-      }
-    }, 200);
+  if (!passed) {
+    console.error("\n❌ TEST SUITE FAILED!\n");
+    process.exit(1);
   } else {
-    if (!passed) process.exit(1);
+    console.log("\n🎉 CLEAN LIGHT PORTFOLIO VERIFIED SUCCESSFULLY!\n");
     process.exit(0);
   }
-}, 600);
+}, 500);

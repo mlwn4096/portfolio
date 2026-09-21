@@ -135,16 +135,16 @@ try {
   logFail("Bundle alias synchronization", e.message);
 }
 
-// Step 5: Run Theme Toggle and Dark Mode Contrast test suite
+// Step 5: Run Clean Portfolio verification suite
 try {
   const { execSync } = require('child_process');
   const testScript = path.join(__dirname, 'tests', 'test_theme_and_contrast.cjs');
   if (fs.existsSync(testScript)) {
     execSync(`NODE_PATH="${path.join(__dirname, 'tests', 'node_modules')}" node "${testScript}"`, { encoding: 'utf8' });
-    logPass("Theme toggle & dark mode contrast test suite (0 unreadable elements, full interactivity)");
+    logPass("Clean portfolio verification suite (0 dark mode artifacts, all sections & photo intact)");
   }
 } catch (e) {
-  logFail("Theme toggle & dark mode contrast test suite", e.stdout || e.message);
+  logFail("Portfolio verification suite", e.stdout || e.message);
 }
 
 // Step 6: Test live Server HTTP responses, CORS, and Cache headers
