@@ -137,10 +137,13 @@ try {
 
 // Step 5: Run Clean Portfolio verification suite
 try {
-  const { execSync } = require('child_process');
+  const { execFileSync } = require('child_process');
   const testScript = path.join(__dirname, 'tests', 'test_theme_and_contrast.cjs');
   if (fs.existsSync(testScript)) {
-    execSync(`NODE_PATH="${path.join(__dirname, 'tests', 'node_modules')}" node "${testScript}"`, { encoding: 'utf8' });
+    execFileSync(process.execPath, [testScript], {
+      encoding: 'utf8',
+      env: { ...process.env, NODE_PATH: [process.env.NODE_PATH, path.join(__dirname, 'tests', 'node_modules')].filter(Boolean).join(path.delimiter) }
+    });
     logPass("Clean portfolio verification suite (0 dark mode artifacts, all sections & photo intact)");
   }
 } catch (e) {
@@ -149,7 +152,16 @@ try {
 
 // Step 6: Test live Server HTTP responses, CORS, and Cache headers
 async function runServerTests() {
+  // Import the Express app without starting its standalone development listener.
+  const previousNodeEnv = process.env.NODE_ENV;
+  const previousVercel = process.env.VERCEL;
+  process.env.NODE_ENV = 'production';
+  process.env.VERCEL = '1';
   const app = require('./server.js');
+  if (previousNodeEnv === undefined) delete process.env.NODE_ENV;
+  else process.env.NODE_ENV = previousNodeEnv;
+  if (previousVercel === undefined) delete process.env.VERCEL;
+  else process.env.VERCEL = previousVercel;
   const testPort = 3010;
   
   return new Promise((resolve) => {
@@ -190,8 +202,7 @@ async function runServerTests() {
       } catch (err) {
         logFail("Server integration testing failed", err.message);
       } finally {
-        server.close();
-        resolve();
+        server.close(resolve);
       }
     });
   });
@@ -202,10 +213,10 @@ runServerTests().then(() => {
   if (hasError) {
     console.error("❌ VERIFICATION FAILED! Do NOT deploy until errors are fixed.");
     console.log("========================================================\n");
-    process.exit(1);
+    process.exitCode = 1;
   } else {
     console.log("🎉 ALL VERIFICATION CHECKS PASSED! SAFE TO DEPLOY.");
     console.log("========================================================\n");
-    process.exit(0);
+    process.exitCode = 0;
   }
 });

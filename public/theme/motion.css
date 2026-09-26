@@ -1,0 +1,133 @@
+/* The introduction and scroll choreography are independent of portfolio content. */
+.light-table .lt-intro h1 {
+  font: 400 clamp(58px, 7.3vw, 104px)/.96 var(--serif) !important;
+  letter-spacing: -.045em !important;
+  text-transform: none !important;
+}
+.light-table .lt-intro h1 > span {
+  display: block !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  text-transform: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 0 !important;
+}
+.light-table .lt-intro h1 > span::after {
+  content: none !important;
+  display: none !important;
+}
+
+.light-table .lt-photo-frame img {
+  --photo-presence: 1;
+  filter: grayscale(calc(1 - var(--photo-presence)))
+          brightness(calc(0.46 + 0.72 * var(--photo-presence)))
+          contrast(calc(0.92 + 0.14 * var(--photo-presence)))
+          saturate(calc(0.40 + 0.72 * var(--photo-presence)));
+  mix-blend-mode: normal;
+  transition: filter 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.light-table.lt-splash-open { overflow: hidden; }
+.light-table .lt-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  background: #182c3b;
+  color: #eef1f3;
+  transition: opacity 380ms ease, visibility 380ms;
+}
+.light-table .lt-splash.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+.light-table .lt-splash > div { border: 0; box-shadow: none !important; }
+.light-table #portfolio-main:focus { outline: none; }
+
+.lt-splash-greeting {
+  display: flex;
+  align-items: center;
+  gap: .12em;
+  font: 400 clamp(42px, 7vw, 92px)/1.2 var(--mono);
+  letter-spacing: -.075em;
+}
+.lt-splash-greeting::before { content: '>'; color: #9eb7c9; font-size: .4em; margin-right: .55em; }
+.lt-splash-cursor { width: .09em; height: .82em; margin-left: .12em; background: #a8c6d9; animation: lt-cursor 850ms step-end infinite; }
+.lt-splash-caption { position: absolute; left: 28px; bottom: 27px; color: #bed0dc; font: 10px var(--mono); letter-spacing: .1em; }
+.lt-splash-skip { position: absolute; right: 24px; bottom: 16px; min-height: 44px; padding: 12px; font: 11px var(--mono); color: #eef1f3; border-bottom: 1px solid #7390a5; }
+.lt-splash-skip:hover { background: #2a4559; }
+.lt-splash-skip:focus-visible { outline: 2px solid #c5ddeb; outline-offset: 4px; }
+@keyframes lt-cursor { 50% { opacity: 0; } }
+
+.light-table.lt-name-stage .lt-hero { margin-top: var(--lt-runway); }
+.lt-name-flight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 35;
+  pointer-events: none;
+  transform-origin: 0 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .96;
+  color: var(--ink);
+  will-change: transform;
+}
+.lt-name-flight span {
+  display: block;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+}
+.light-table.lt-name-stage:not(.lt-name-settled) .lt-intro h1 { opacity: 0; }
+.lt-name-cue {
+  position: fixed;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 34;
+  pointer-events: none;
+  font: 10px var(--mono);
+  letter-spacing: .1em;
+  color: var(--muted);
+}
+.lt-name-cue::after { content: ''; display: block; height: 35px; width: 1px; background: #9cafbc; margin: 18px auto 0; }
+.light-table.lt-name-stage:not(.lt-name-settled) .lt-ruler { opacity: 0; pointer-events: none; }
+
+@media (max-width: 1150px) {
+  .light-table .lt-intro h1 {
+    font-size: clamp(52px, 8.5vw, 88px) !important;
+  }
+  .light-table .lt-intro h1 > span {
+    font-size: inherit !important;
+    letter-spacing: inherit !important;
+    padding: 0 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .light-table .lt-intro h1 {
+    font-size: clamp(48px, 13.5vw, 76px) !important;
+    line-height: 1.0 !important;
+  }
+  .light-table .lt-intro h1 > span {
+    font-size: inherit !important;
+    letter-spacing: inherit !important;
+    padding: 0 !important;
+  }
+  .lt-name-cue { bottom: 28px; }
+  .lt-splash-caption { left: 24px; bottom: 31px; font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lt-splash, .lt-name-flight, .lt-name-cue { display: none; }
+  .light-table.lt-name-stage .lt-hero { margin-top: 0; }
+  .light-table.lt-name-stage .lt-intro h1 { opacity: 1; }
+  .light-table .lt-photo-frame img { filter: brightness(1.18) saturate(1.12); transition: none; }
+}

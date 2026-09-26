@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { JSDOM } = require('./node_modules/jsdom');
+const { JSDOM } = require('jsdom');
 
 console.log("\n🧪 RUNNING CLEAN LIGHT PORTFOLIO VERIFICATION SUITE\n");
 

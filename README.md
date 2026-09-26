@@ -1,8 +1,10 @@
-# Melwin Santhosh — Developer Portfolio & CV Portal (Neo-Brutalism Edition)
+# Melwin Santhosh — Developer Portfolio & CV Portal (Light Table Edition)
 
 🌐 **Live Website**: [https://www.mlwn.in/](https://www.mlwn.in/)
 
-A bold, high-contrast **Neo-Brutalist** developer portfolio and systems portal built with modern frontend engineering and backed by **Node.js** & **Express**. Features the raw, tactile aesthetic of neo-brutalism (Space Grotesk typography, pure ink borders, solid 45-degree offset shadows, mechanical button clicks, and physical card lifts) alongside serverless REST resume endpoints and direct ATS CV download delivery.
+A custom **Light Table** portfolio backed by **Node.js** and **Express**. Cool paper, ink typography, a calibrated portrait frame, numbered section navigation, and ruled project sheets replace the previous visual theme. All portfolio copy, links, React behavior, resume files, and API data are preserved.
+
+The readable presentation source lives in `public/theme/light-table.css` and `public/theme/light-table.js`. Fonts are served locally with their licenses in `public/theme/fonts`. The deployed React bundle remains unchanged. See [design and review notes](docs/light-table.md) for the five independent originality reviews and validation details. This redesign is local and has not been pushed or deployed.
 
 ---
 
@@ -10,7 +12,7 @@ A bold, high-contrast **Neo-Brutalist** developer portfolio and systems portal b
 
 ### 1. Run the Server
 ```bash
-cd /root/projects/portfolio-nodejs
+cd portfolio
 node server.js
 # or
 npm start
@@ -33,7 +35,7 @@ portfolio-nodejs/
 ├── vercel.json            # Vercel deployment configuration
 ├── package.json           # Project dependencies & scripts
 ├── public/
-│   ├── index.html         # Neo-brutalist single-page application entrypoint
+│   ├── index.html         # Light Table single-page application entrypoint
 │   ├── assets/            # Production bundled JS & CSS assets
 │   ├── Melwin_Santhosh_CV.pdf  # ATS-compliant single-page CV
 │   ├── cv.html            # Standalone printable HTML CV
