@@ -82,6 +82,16 @@ const cvData = {
   ],
   experience: [
     {
+      role: "Hackathon Competitor & ML Systems Builder",
+      organization: "HackMe'26 — VISAT Engineering College, Elanji",
+      period: "September 2026",
+      highlights: [
+        "Competed in the national-level HackMe'26 hackathon (AI/ML Track) tackling PS1: Urban Heat Mitigation via AI/ML.",
+        "Co-developed UHI (Urban Heat Intelligence), an AI-powered Kochi Heat Action Planner combining physics-informed XGBoost with satellite Earth observation (Landsat 8/9, Sentinel-2, ERA5-Land, OSM).",
+        "Engineered spatial-panel modeling over 54,168 100m grid cells (spatial-CV R²=0.83), a ₹10 crore municipal cooling budget optimizer protecting ~186,000 citizens across 74 wards, and an automated heat-neutral project screening check."
+      ]
+    },
+    {
       role: "Platform Contributor",
       organization: "PRAX — Initiative by Vantcrest Labs Pvt. Ltd.",
       period: "2026 - Present",
@@ -94,6 +104,13 @@ const cvData = {
     }
   ],
   projects: [
+    {
+      title: "UHI: Urban Heat Intelligence — Kochi Heat Action Planner",
+      category: "Climate AI & Geospatial Machine Learning",
+      description: "AI-powered urban climate decision system developed for HackMe'26 at VISAT Engineering College (PS1). Features a physics-informed scene-panel XGBoost model over 54,168 100m cells across Kochi, a ₹10 crore budget optimizer cooling ~186k people, heat-neutral project screening, what-if simulations, and live Malayalam alert layers.",
+      tags: ["Python", "XGBoost", "Google Earth Engine", "Streamlit", "Remote Sensing", "Climate AI"],
+      link: "https://github.com/j33v4nz/visat"
+    },
     {
       title: "PRAX Web Platform",
       category: "Full-Stack Web / Community Architecture",

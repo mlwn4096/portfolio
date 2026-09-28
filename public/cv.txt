@@ -30,6 +30,17 @@ SKPS, Kaduthuruthy
 --------------------------------------------------------------------------------
 [EXPERIENCE & INITIATIVES]
 --------------------------------------------------------------------------------
+Hackathon Competitor & ML Systems Builder                          Sep 2026
+HackMe'26 — VISAT Engineering College, Elanji
+(AI/ML Track • PS1: Urban Heat Mitigation via AI/ML)
+* Competed in the national-level HackMe'26 hackathon tackling Urban Heat
+  Mitigation through physics-informed machine learning and Earth observation.
+* Co-engineered UHI (Urban Heat Intelligence), a comprehensive Kochi Heat
+  Action Planner combining Landsat 8/9, Sentinel-2, ERA5, and OpenStreetMap.
+* Built a scene-panel XGBoost model over 54,168 100m cells (spatial-CV R²=0.83),
+  a ₹10 crore cooling budget optimizer protecting ~186,000 residents across
+  74 Kochi wards, and an automated heat-neutral project screening check.
+
 Platform Contributor                                             2026 - Present
 PRAX - Initiative by Vantcrest Labs Pvt. Ltd.
 (Professional Learning & Collaboration Community)
@@ -48,6 +59,15 @@ PRAX - Initiative by Vantcrest Labs Pvt. Ltd.
 --------------------------------------------------------------------------------
 [PROJECTS]
 --------------------------------------------------------------------------------
+UHI: Urban Heat Intelligence — Kochi Heat Action Planner
+* Developed an AI/ML urban climate decision system for HackMe'26 at VISAT
+  Engineering College (github.com/j33v4nz/visat).
+* Trained physics-informed scene-panel XGBoost models on 23 satellite scenes,
+  incorporating solar radiation physics and monotone constraints.
+* Built 5 interactive workspaces: Heat Stress Map (74 wards), ₹10 Cr Cooling
+  Action Planner (~186k citizens cooled), What-If analog transitions,
+  Heat-Neutral development checks, and live Malayalam news alert feeds.
+
 PRAX Web Platform
 * Designed and engineered core components of the digital platform supporting
   the PRAX community ecosystem.

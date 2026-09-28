@@ -190,6 +190,8 @@
 .light-table .lt-projects p { font-size: 13px; }
 .light-table .lt-projects .flex-wrap span { background: none; border: 0; border-bottom: 1px solid var(--line); padding: 3px 0; margin-right: 8px; font: 9px var(--mono); }
 .light-table .lt-projects a { background: none; color: var(--ink); border: 0; padding: 12px 0 0; font: 10px var(--mono); }
+.light-table .lt-projects a:has(img) { padding: 0; display: block; }
+.light-table .lt-projects img { border: 1px solid var(--line); width: 100%; border-radius: 2px; }
 .light-table .lt-projects a svg { color: var(--ink); }
 
 .light-table #contact { background: var(--paper); }
