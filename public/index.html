@@ -42,10 +42,74 @@
     <meta property="og:image" content="https://mlwn.in/melwin-blue.png" />
     <meta property="og:image:width" content="1086" />
     <meta property="og:image:height" content="1448" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Melwin Santhosh | Integrated MCA • AI × Multimedia" />
     <meta name="twitter:description" content="Personal portfolio of Melwin Santhosh. Integrated MCA student at SJCET Palai, Platform Contributor at PRAX, builder exploring AI, multimedia, and software development." />
     <meta name="twitter:image" content="https://mlwn.in/melwin-blue.png" />
+
+    <!-- Schema.org JSON-LD Knowledge Graph -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://mlwn.in/#person",
+          "name": "Melwin Santhosh",
+          "alternateName": ["mlwn", "mlwn4096", "Melwin Santhosh SJCET"],
+          "url": "https://mlwn.in/",
+          "email": "mailto:melwinsanthoah4096@gmail.com",
+          "jobTitle": "Platform Contributor & Integrated MCA Scholar",
+          "description": "Melwin Santhosh is an Integrated MCA scholar at SJCET Palai and Platform Contributor at PRAX (Vantcrest Labs Pvt. Ltd.).",
+          "sameAs": [
+            "https://github.com/mlwn4096",
+            "https://www.linkedin.com/in/melwin-santhosh-784550378",
+            "https://wa.me/916235764096"
+          ],
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "St. Joseph's College of Engineering and Technology (SJCET), Palai",
+            "url": "https://sjcetpalai.ac.in/"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "PRAX — Vantcrest Labs Pvt. Ltd."
+          },
+          "knowsAbout": [
+            "Artificial Intelligence",
+            "Deterministic State Machines",
+            "Full-Stack Web Development",
+            "Linux Systems & POSIX Shell",
+            "Node.js & Express Architecture"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://mlwn.in/#website",
+          "url": "https://mlwn.in/",
+          "name": "Melwin Santhosh | Integrated MCA • AI × Multimedia",
+          "description": "Official portfolio and engineering portal of Melwin Santhosh.",
+          "publisher": {
+            "@id": "https://mlwn.in/#person"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://mlwn.in/#webpage",
+          "url": "https://mlwn.in/",
+          "name": "Melwin Santhosh — Engineering Profile",
+          "isPartOf": {
+            "@id": "https://mlwn.in/#website"
+          },
+          "mainEntity": {
+            "@id": "https://mlwn.in/#person"
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Light Table: editorial type, technical annotations, a cool paper surface. -->
     <link rel="preload" href="/theme/fonts/newsreader-roman.woff2" as="font" type="font/woff2" crossorigin>
@@ -56,6 +120,8 @@
     <script defer src="/theme/light-table.js?v=1"></script>
     <link rel="stylesheet" href="/theme/motion.css?v=1">
     <script defer src="/theme/motion.js?v=1"></script>
+    <link rel="stylesheet" href="/theme/light-table-features.css?v=1">
+    <script defer src="/theme/light-table-features.js?v=1"></script>
   </head>
   <body class="bg-[#FFFDF5] text-black font-body antialiased selection:bg-neo-secondary selection:text-black min-h-screen overflow-x-hidden">
     <div id="root"></div>

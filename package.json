@@ -20,6 +20,7 @@
   "author": "Melwin Santhosh",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.22.3",
+    "jsdom": "^30.1.1"
   }
 }
