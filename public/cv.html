@@ -95,6 +95,34 @@
       margin-bottom: 22px;
     }
 
+    .header-profile {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .header-details {
+      min-width: 0;
+    }
+
+    .profile-photo {
+      width: 100px;
+      height: 118px;
+      flex: 0 0 auto;
+      object-fit: cover;
+      object-position: center 20%;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+
+    @media (max-width: 540px) {
+      .profile-photo {
+        width: 76px;
+        height: 90px;
+      }
+    }
+
     .terminal-badge {
       display: inline-block;
       font-size: 11px;
@@ -289,6 +317,13 @@
         margin-bottom: 14pt !important;
       }
 
+      .profile-photo {
+        width: 24mm;
+        height: 28mm;
+        border-color: #888 !important;
+        print-color-adjust: exact;
+      }
+
       .section-title {
         border-bottom: 1pt solid #000000 !important;
         color: #000000 !important;
@@ -342,19 +377,24 @@
 
     <!-- Header / Identification -->
     <header>
-      <div class="terminal-badge">SYS:PROFILE // CURRICULUM VITAE</div>
-      <h1 class="name">Melwin Santhosh</h1>
-      <div class="tagline">Integrated MCA Student | AI &amp; Software Development</div>
-      <div class="contact-bar">
-        <span>Palai, Kerala, India</span>
-        <span>•</span>
-        <a href="mailto:melwinsanthoah4096@gmail.com">melwinsanthoah4096@gmail.com</a>
-        <span>•</span>
-        <span>+91 6235764096</span>
-        <span>•</span>
-        <a href="https://www.linkedin.com/in/melwin-santhosh-784550378" target="_blank" rel="noopener">linkedin.com/in/melwin-santhosh-784550378</a>
-        <span>•</span>
-        <a href="https://github.com/mlwn4096" target="_blank" rel="noopener">github.com/mlwn4096</a>
+      <div class="header-profile">
+        <div class="header-details">
+          <div class="terminal-badge">SYS:PROFILE // CURRICULUM VITAE</div>
+          <h1 class="name">Melwin Santhosh</h1>
+          <div class="tagline">Integrated MCA Student | AI &amp; Software Development</div>
+          <div class="contact-bar">
+            <span>Palai, Kerala, India</span>
+            <span>•</span>
+            <a href="mailto:melwinsanthoah4096@gmail.com">melwinsanthoah4096@gmail.com</a>
+            <span>•</span>
+            <span>+91 6235764096</span>
+            <span>•</span>
+            <a href="https://www.linkedin.com/in/melwin-santhosh-784550378" target="_blank" rel="noopener">linkedin.com/in/melwin-santhosh-784550378</a>
+            <span>•</span>
+            <a href="https://github.com/mlwn4096" target="_blank" rel="noopener">github.com/mlwn4096</a>
+          </div>
+        </div>
+        <img class="profile-photo" src="/melwin-blue.png" alt="Portrait of Melwin Santhosh" width="100" height="118">
       </div>
     </header>
 
