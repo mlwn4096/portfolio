@@ -1,34 +1,106 @@
-MELWIN SANTHOSH
-Software Development & AI  |  Integrated MCA Student
-Palai, Kerala, India | +91 6235764096 | melwinsanthoah4096@gmail.com | mlwn.in | github.com/mlwn4096 | LinkedIn
+================================================================================
+                                MELWIN SANTHOSH
+             Integrated MCA Student | AI & Software Development
+ Palai, Kerala, India | +91 6235764096 | melwinsanthoah4096@gmail.com
+  linkedin.com/in/melwin-santhosh-784550378 | github.com/mlwn4096
+================================================================================
 
-PROFILE
-Integrated MCA student at SJCET, Palai, building web and AI systems. Contribute to the PRAX professional learning platform and develop practical projects in geospatial machine learning, API security, and frontend engineering.
+[PROFILE]
+Integrated MCA student at St. Joseph's College of Engineering and Technology
+(SJCET), Palai, with a strong focus on Artificial Intelligence, software
+development, modern web technologies, and multimedia systems. Passionate about
+learning through hands-on project execution and building practical, technology-
+driven products. Currently actively contributing to the development of PRAX, an
+invite-only professional learning and collaboration initiative by Vantcrest
+Labs Pvt. Ltd.
 
-EXPERIENCE
-Platform Contributor | PRAX · Vantcrest Labs Pvt. Ltd. | 2026–present
-- Contribute to PRAX, an invite-only professional learning initiative by Vantcrest Labs Pvt. Ltd., with platform work covering member progression, project challenges, mentorship, and experience documentation.
-- Help shape community workflows that connect practical engineering projects, peer feedback, and career opportunities.
+--------------------------------------------------------------------------------
+[EDUCATION]
+--------------------------------------------------------------------------------
+Integrated Master of Computer Applications (MCA)                     2025 - 2030
+St. Joseph's College of Engineering and Technology (SJCET), Palai
+* Focus: Computer Applications, Software Development, Artificial Intelligence
 
-SELECTED PROJECTS
-UHI — Urban Heat Intelligence | github.com/j33v4nz/visat
-- Co-developed a Kochi heat action planner for HackMe'26 using Landsat/Sentinel data and physics-informed XGBoost; reported spatial cross-validation R² of 0.83 over 54,168 grid cells.
-- Built Streamlit planning tools spanning 74 wards, including cooling budget scenarios, development screening, and heat exposure views.
-NeuroBots — Zero Trust API Defense | github.com/mlwn4096/NeuroBots
-- Built an API authorization defense project for BOLA/BFLA scenarios using behavioral analysis, NetworkX graphs, Markov models, and LangChain-assisted threat summaries.
-- Used React, FastAPI, Redis, PostgreSQL, and Docker across the interface, API gateway, data layer, and local deployment workflow.
-Personal Developer Portfolio | mlwn.in
-- Built a responsive portfolio with an interactive CLI, Node.js/Express API, downloadable resume, and accessible project presentation.
+Senior Secondary - CBSE (Class XII)                                         2025
+SKPS, Kaduthuruthy
 
-EDUCATION
-Integrated Master of Computer Applications | SJCET, Palai | 2025–2030 (expected)
+Secondary - CBSE (Class X)                                                  2023
+SKPS, Kaduthuruthy
 
-TECHNICAL SKILLS
-Languages & web: Python, JavaScript, HTML, CSS, React, Node.js, Express, FastAPI, Streamlit
-Data & tooling: XGBoost, PostgreSQL, Redis, Docker, Git, Bash, Linux, NetworkX
-Focus areas: Geospatial ML, API security, AI-assisted workflows, responsive UI
+--------------------------------------------------------------------------------
+[EXPERIENCE & INITIATIVES]
+--------------------------------------------------------------------------------
+Hackathon Competitor & ML Systems Builder                          Sep 2026
+HackMe'26 — VISAT Engineering College, Elanji
+(AI/ML Track • PS1: Urban Heat Mitigation via AI/ML)
+* Competed in the national-level HackMe'26 hackathon tackling Urban Heat
+  Mitigation through physics-informed machine learning and Earth observation.
+* Co-engineered UHI (Urban Heat Intelligence), a comprehensive Kochi Heat
+  Action Planner combining Landsat 8/9, Sentinel-2, ERA5, and OpenStreetMap.
+* Built a scene-panel XGBoost model over 54,168 100m cells (spatial-CV R²=0.83),
+  a ₹10 crore cooling budget optimizer protecting ~186,000 residents across
+  74 Kochi wards, and an automated heat-neutral project screening check.
 
-ACTIVITIES & RECOGNITION
-- HackMe'26 AI/ML track, VISAT Engineering College (September 2026): co-developed UHI for urban heat mitigation.
-- Best Team Award, INSENDIUM 10.0 Startup Bootcamp (2025); member of a six-person team.
-- Participated in Gnosis AI Hackathon at INCEPTA 2026 and HashItUp 24-hour National Hackathon (2025); attended an IBM watsonx Orchestrate workshop (2026).
+Platform Contributor                                             2026 - Present
+PRAX - Initiative by Vantcrest Labs Pvt. Ltd.
+(Professional Learning & Collaboration Community)
+* Contributed to the development and architecture of an invite-only professional
+  community focused on practical engineering experience, continuous learning,
+  and real-world industry exposure.
+* Developing key modules of the digital platform enabling members to build
+  projects, document technical experiences, collaborate, receive peer feedback,
+  and access career opportunities.
+* Formulating community progression structures, including member milestone
+  systems, project/challenge workflows, mentorship matching, and opportunity
+  pipelines.
+* Bridging practical project-based learning with professional industry standards
+  and cross-functional team collaboration.
+
+--------------------------------------------------------------------------------
+[PROJECTS]
+--------------------------------------------------------------------------------
+UHI: Urban Heat Intelligence — Kochi Heat Action Planner
+* Developed an AI/ML urban climate decision system for HackMe'26 at VISAT
+  Engineering College (github.com/j33v4nz/visat).
+* Trained physics-informed scene-panel XGBoost models on 23 satellite scenes,
+  incorporating solar radiation physics and monotone constraints.
+* Built 5 interactive workspaces: Heat Stress Map (74 wards), ₹10 Cr Cooling
+  Action Planner (~186k citizens cooled), What-If analog transitions,
+  Heat-Neutral development checks, and live Malayalam news alert feeds.
+
+PRAX Web Platform
+* Designed and engineered core components of the digital platform supporting
+  the PRAX community ecosystem.
+* Implemented modules for community architecture, member progression stages,
+  interactive challenges, mentorship workflows, and experience documentation.
+* Focused on delivering a structured, high-performance environment tailored for
+  practical learning and collaborative product building.
+
+Personal Portfolio Website
+* Designed and deployed a responsive personal portfolio website showcasing
+  technical projects, development experience, and technical proficiencies.
+* Implemented modern web standards and UI/UX design principles to deliver a fast,
+  accessible, and professional digital web presence.
+
+--------------------------------------------------------------------------------
+[TECHNICAL SKILLS & EXPERTISE]
+--------------------------------------------------------------------------------
+* Systems & Operating Systems:
+  Linux Environments, Linux Mint, Fedora, Command-Line (CLI) Workflows,
+  Shell Scripting, System Configuration & Hardware Troubleshooting
+
+* Software & Web Development:
+  Web Application Development, Modern Frontend Development, HTML5, CSS3,
+  JavaScript, Responsive Design, UI/UX Design Principles
+
+* AI & Modern Engineering Workflows:
+  Artificial Intelligence, AI-Assisted Development Tools, Prompt Engineering,
+  Workflow Automation, Git & Version Control
+
+* Hardware & Systems Engineering:
+  Computer Systems Architecture, Hardware Diagnostics, System Performance Tuning
+
+* Core Interests:
+  Software Development, Artificial Intelligence, Web Technologies,
+  Multimedia & Digital Media, Open-Source Technologies
+================================================================================

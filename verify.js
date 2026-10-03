@@ -178,8 +178,7 @@ async function runServerTests() {
           { path: '/assets/index-1sc7E3Jj.css', expectStatus: 200, expectType: 'text/css' },
           { path: '/assets/nonexistent-fallback-test.css', expectStatus: 200, expectType: 'text/css' },
           { path: '/melwin-blue.png', expectStatus: 200, expectType: 'image/png' },
-          { path: '/mlwn.png', expectStatus: 200, expectType: 'image/png' },
-          { path: '/llms.txt', expectStatus: 200, expectType: 'text/plain' }
+          { path: '/mlwn.png', expectStatus: 200, expectType: 'image/png' }
         ];
 
         for (const ep of testEndpoints) {

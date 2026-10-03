@@ -191,13 +191,6 @@ app.get('/health', (req, res) => {
   res.json({ status: 'healthy', uptime: process.uptime(), timestamp: new Date() });
 });
 
-// 5. LLM Discovery Endpoint
-app.get('/llms.txt', (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'llms.txt');
-  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-  res.sendFile(filePath);
-});
-
 // Asset safety handler: Never serve index.html for static asset requests to prevent MIME type crashes
 app.use((req, res, next) => {
   if (req.path.startsWith('/assets/') || req.path.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico|json|map|pdf|txt|xml|webmanifest)$/i)) {
