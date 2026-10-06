@@ -50,14 +50,15 @@
     <!-- Light Table: editorial type, technical annotations, a cool paper surface. -->
     <link rel="preload" href="/theme/fonts/newsreader-roman.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/theme/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
-    <script type="module" crossorigin src="/assets/index-v9zL2PqM.js?v=e19ff2241ac6"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-v9zL2PqM.css?v=01ac1178e932">
     <link rel="stylesheet" href="/theme/light-table.css?v=1e1bfdd4833c">
-    <script defer src="/theme/light-table.js?v=20ec8008233d"></script>
     <link rel="stylesheet" href="/theme/motion.css?v=c767ce305e77">
-    <script defer src="/theme/motion.js?v=3cd19cb9feb5"></script>
   </head>
-  <body class="bg-[#FFFDF5] text-black font-body antialiased selection:bg-neo-secondary selection:text-black min-h-screen overflow-x-hidden">
+  <body class="antialiased min-h-screen overflow-x-hidden">
     <div id="root"></div>
+    <!-- Install presentation observers before React mounts: no legacy-theme first frame. -->
+    <script src="/theme/light-table.js?v=20ec8008233d"></script>
+    <script src="/theme/motion.js?v=3cd19cb9feb5"></script>
+    <script type="module" crossorigin src="/assets/index-v9zL2PqM.js?v=e19ff2241ac6"></script>
   </body>
 </html>
