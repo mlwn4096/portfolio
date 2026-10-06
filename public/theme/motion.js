@@ -1,74 +1,18 @@
 /* Progressive motion: readable by default, scroll-driven, and reduced-motion aware. */
 (() => {
   if (!['/', '/index.html'].includes(location.pathname)) return;
-  const html = document.documentElement;
   const root = document.getElementById('root');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const clamp = value => Math.max(0, Math.min(1, value));
   const smooth = value => value * value * (3 - 2 * value);
-  let splash, splashTimer, splashDone = reduced.matches || !!location.hash;
   let heading, portrait;
   let lastY = scrollY, direction = 'down', queued = false, started = false;
   const reveals = new Set();
   const animations = new Map();
 
-  function finishSplash() {
-    if (splashDone) return;
-    splashDone = true;
-    clearTimeout(splashTimer);
-    html.classList.remove('lt-splash-open');
-    root.inert = false;
-    document.querySelector('.lt-ruler')?.removeAttribute('inert');
-    const hadFocus = splash?.contains(document.activeElement);
-    if (splash) {
-      const old = splash;
-      old.classList.add('is-leaving');
-      old.inert = true;
-      setTimeout(() => old.remove(), 400);
-      splash = null;
-    }
-    if (hadFocus) {
-      const main = root.querySelector('main');
-      main?.focus({preventScroll: true});
-    }
-    requestTick();
-  }
-
-  if (!splashDone) {
-    splash = document.createElement('div');
-    splash.className = 'lt-splash';
-    splash.setAttribute('role', 'dialog');
-    splash.setAttribute('aria-modal', 'true');
-    splash.setAttribute('aria-label', 'Opening portfolio');
-    splash.innerHTML = `
-      <span class="lt-loader-brand">MLWN <span>/ PORTFOLIO</span></span>
-      <div class="lt-spatial-scene" aria-hidden="true">
-        <div class="lt-spatial-grid"></div>
-        <div class="lt-spatial-orbit"></div>
-        <div class="lt-spatial-object">
-          <i class="lt-spatial-face front"></i><i class="lt-spatial-face back"></i>
-          <i class="lt-spatial-face left"></i><i class="lt-spatial-face right"></i>
-          <i class="lt-spatial-face top"></i><i class="lt-spatial-face bottom"></i>
-        </div>
-      </div>
-      <div class="lt-loader-copy"><span>Melwin Santhosh</span><p>Opening a new perspective</p><div class="lt-loader-track" aria-hidden="true"><i></i></div></div>
-      <span class="lt-splash-caption">AI / MULTIMEDIA / SOFTWARE</span>
-      <button type="button" class="lt-splash-skip">Skip intro ↗</button>`;
-    document.body.append(splash);
-    html.classList.add('lt-splash-open');
-    root.inert = true;
-    splash.querySelector('button').addEventListener('click', finishSplash);
-    splash.querySelector('button').focus({preventScroll: true});
-    // 4.4 seconds plus a 0.4 second exit; independent of network requests.
-    splashTimer = setTimeout(finishSplash, 4400);
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) finishSplash();
-    });
-  }
-
   const revealObserver = new IntersectionObserver(entries => {
     for (const entry of entries) {
-      if (!entry.isIntersecting || reduced.matches || !splashDone || direction !== 'down' || entry.boundingClientRect.top < 80) continue;
+      if (!entry.isIntersecting || reduced.matches || direction !== 'down' || entry.boundingClientRect.top < 80) continue;
       animations.get(entry.target)?.cancel();
       const animation = entry.target.animate([
         { opacity: 0, transform: 'translateY(16px)' },
@@ -108,7 +52,6 @@
     heading.querySelector('span').textContent = 'Santhosh';
 
     registerReveals();
-    if (!splashDone) document.querySelector('.lt-ruler')?.setAttribute('inert', '');
     requestTick();
     document.fonts.ready.then(requestTick);
   }
@@ -152,17 +95,8 @@
     });
   });
 
-  document.addEventListener('keydown', event => {
-    if (!splashDone && event.key === 'Escape') finishSplash();
-    if (!splashDone && event.key === 'Tab') {
-      event.preventDefault();
-      splash?.querySelector('button').focus();
-    }
-  });
-
   reduced.addEventListener('change', () => {
     if (reduced.matches) {
-      finishSplash();
       portrait?.style.removeProperty('--photo-presence');
     }
     requestTick();

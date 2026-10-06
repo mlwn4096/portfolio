@@ -1,4 +1,4 @@
-/* The introduction and scroll choreography are independent of portfolio content. */
+/* Portfolio typography and progressive scroll motion. */
 .light-table .lt-intro h1 {
   font: 400 clamp(58px, 7.3vw, 104px)/.96 var(--serif) !important;
   letter-spacing: -.045em !important;
@@ -31,53 +31,7 @@
   transition: filter 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.light-table.lt-splash-open { overflow: hidden; }
-.light-table .lt-splash {
-  position: fixed; inset: 0; z-index: 120; overflow: hidden;
-  display: grid; place-items: center; background: var(--paper); color: var(--ink);
-  transition: opacity 380ms ease, visibility 380ms;
-}
-.light-table .lt-splash.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
 .light-table #portfolio-main:focus { outline: none; }
-.lt-loader-brand { position: absolute; top: 28px; left: 28px; font: 12px var(--mono); letter-spacing: .12em; }
-.lt-loader-brand span { color: var(--muted); }
-.lt-spatial-scene { position: absolute; width: min(620px, 100vw); height: min(520px, 65vh); top: 8%; perspective: 850px; }
-.lt-spatial-grid {
-  position: absolute; inset: 15% -15%;
-  background-image: linear-gradient(#c2cdd466 1px, transparent 1px), linear-gradient(90deg, #c2cdd466 1px, transparent 1px);
-  background-size: 36px 36px; transform: rotateX(68deg) translateZ(-110px);
-  mask-image: radial-gradient(ellipse, black 15%, transparent 68%);
-}
-.lt-spatial-object {
-  --cube: clamp(100px, 22vw, 164px); --depth: calc(var(--cube) / 2);
-  position: absolute; width: var(--cube); height: var(--cube); left: calc(50% - var(--depth)); top: calc(45% - var(--depth));
-  transform-style: preserve-3d; animation: lt-spatial-turn 4.4s cubic-bezier(.3,.1,.2,1) both;
-}
-.lt-spatial-face { position: absolute; inset: 0; border: 1px solid #718b9d; background: #dce7ee70; backface-visibility: visible; }
-.lt-spatial-face::after { content: ''; position: absolute; inset: 15%; border: 1px solid #718b9d66; }
-.lt-spatial-face.front { transform: translateZ(var(--depth)); }
-.lt-spatial-face.back { transform: rotateY(180deg) translateZ(var(--depth)); }
-.lt-spatial-face.left { transform: rotateY(-90deg) translateZ(var(--depth)); }
-.lt-spatial-face.right { transform: rotateY(90deg) translateZ(var(--depth)); background: #9eb7c955; }
-.lt-spatial-face.top { transform: rotateX(90deg) translateZ(var(--depth)); background: #f7f9fa99; }
-.lt-spatial-face.bottom { transform: rotateX(-90deg) translateZ(var(--depth)); }
-.lt-spatial-orbit { position: absolute; width: 68%; aspect-ratio: 1; left: 16%; top: 0; border: 1px solid var(--line); border-radius: 50%; transform: rotateX(64deg) rotateZ(-24deg); }
-.lt-spatial-orbit::after { content: ''; position: absolute; width: 8px; height: 8px; top: 14%; left: 14%; border-radius: 50%; background: var(--accent); }
-.lt-loader-copy { position: absolute; top: 65%; width: min(280px, 75vw); text-align: center; }
-.lt-loader-copy > span { font: 400 clamp(28px, 5vw, 40px)/1.2 var(--serif); letter-spacing: -.04em; }
-.lt-loader-copy p { margin-top: 12px; font: 10px var(--mono); color: var(--muted); }
-.lt-loader-track { height: 1px; background: var(--line); margin-top: 24px; overflow: hidden; }
-.lt-loader-track i { display: block; height: 100%; background: var(--ink); transform-origin: left; animation: lt-loader-progress 4.4s linear both; }
-.lt-splash-caption { position: absolute; left: 28px; bottom: 30px; color: var(--muted); font: 9px var(--mono); letter-spacing: .06em; }
-.lt-splash-skip { position: absolute; right: 24px; bottom: 16px; min-height: 44px; padding: 12px; font: 11px var(--mono); color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; }
-.lt-splash-skip:hover { background: var(--blue); }
-.lt-splash-skip:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-@keyframes lt-spatial-turn {
-  0% { transform: translateY(24px) rotateX(-24deg) rotateY(-35deg) rotateZ(-8deg); opacity: 0; }
-  15% { opacity: 1; }
-  100% { transform: translateY(-12px) rotateX(-24deg) rotateY(325deg) rotateZ(8deg); opacity: 1; }
-}
-@keyframes lt-loader-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 @media (max-width: 1150px) {
   .light-table .lt-intro h1 {
@@ -100,11 +54,8 @@
     letter-spacing: inherit !important;
     padding: 0 !important;
   }
-  .lt-splash-caption { left: 20px; bottom: 80px; font-size: 8px; }
-  .lt-loader-brand { left: 20px; top: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lt-splash { display: none; }
   .light-table .lt-photo-frame img { filter: brightness(1.18) saturate(1.12); transition: none; }
 }
