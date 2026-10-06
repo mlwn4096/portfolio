@@ -6,22 +6,20 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const clamp = value => Math.max(0, Math.min(1, value));
   const smooth = value => value * value * (3 - 2 * value);
-  let splash, splashFrame, splashTimer, splashDone = reduced.matches || !!location.hash;
-  let hero, heading, portrait, flight, cue, runway = 0;
+  let splash, splashTimer, splashDone = reduced.matches || !!location.hash;
+  let heading, portrait;
   let lastY = scrollY, direction = 'down', queued = false, started = false;
   const reveals = new Set();
   const animations = new Map();
 
-  function finishSplash(skip = false) {
+  function finishSplash() {
     if (splashDone) return;
     splashDone = true;
-    cancelAnimationFrame(splashFrame);
     clearTimeout(splashTimer);
     html.classList.remove('lt-splash-open');
     root.inert = false;
     document.querySelector('.lt-ruler')?.removeAttribute('inert');
     const hadFocus = splash?.contains(document.activeElement);
-    if (skip) removeStage();
     if (splash) {
       const old = splash;
       old.classList.add('is-leaving');
@@ -41,61 +39,31 @@
     splash.className = 'lt-splash';
     splash.setAttribute('role', 'dialog');
     splash.setAttribute('aria-modal', 'true');
-    splash.setAttribute('aria-label', 'hello :)');
-    splash.innerHTML = '<div class="lt-splash-greeting" aria-hidden="true"><span class="lt-scramble"></span><i class="lt-splash-cursor"></i></div><span class="lt-splash-caption" aria-hidden="true">MLWN / WELCOME</span><button type="button" class="lt-splash-skip">Skip intro ↗</button>';
+    splash.setAttribute('aria-label', 'Opening portfolio');
+    splash.innerHTML = `
+      <span class="lt-loader-brand">MLWN <span>/ PORTFOLIO</span></span>
+      <div class="lt-spatial-scene" aria-hidden="true">
+        <div class="lt-spatial-grid"></div>
+        <div class="lt-spatial-orbit"></div>
+        <div class="lt-spatial-object">
+          <i class="lt-spatial-face front"></i><i class="lt-spatial-face back"></i>
+          <i class="lt-spatial-face left"></i><i class="lt-spatial-face right"></i>
+          <i class="lt-spatial-face top"></i><i class="lt-spatial-face bottom"></i>
+        </div>
+      </div>
+      <div class="lt-loader-copy"><span>Melwin Santhosh</span><p>Opening a new perspective</p><div class="lt-loader-track" aria-hidden="true"><i></i></div></div>
+      <span class="lt-splash-caption">AI / MULTIMEDIA / SOFTWARE</span>
+      <button type="button" class="lt-splash-skip">Skip intro ↗</button>`;
     document.body.append(splash);
     html.classList.add('lt-splash-open');
     root.inert = true;
-    const text = splash.querySelector('.lt-scramble');
-    const greeting = 'hello :)';
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789/*_+#@!&%<>';
-    const began = performance.now();
-    let previousStep = -1;
-
-    function scramble(now) {
-      const elapsed = now - began;
-      const step = Math.floor(elapsed / 50);
-      if (step !== previousStep) {
-        previousStep = step;
-        const resolved = Math.floor(clamp((elapsed - 300) / 1800) * greeting.length);
-        text.textContent = [...greeting].map((character, i) => character === ' ' || i < resolved ? character : alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
-      }
-      if (elapsed < 2100) {
-        splashFrame = requestAnimationFrame(scramble);
-      } else {
-        text.textContent = greeting;
-      }
-    }
-    splashFrame = requestAnimationFrame(scramble);
-    splash.querySelector('button').addEventListener('click', () => finishSplash(true));
+    splash.querySelector('button').addEventListener('click', finishSplash);
     splash.querySelector('button').focus({preventScroll: true});
-    // Display splash for ~3.5 seconds before smoothly fading out
-    splashTimer = setTimeout(() => finishSplash(), 3400);
-  }
-
-  function removeStage() {
-    runway = 0;
-    html.classList.remove('lt-name-stage', 'lt-name-settled');
-    html.style.removeProperty('--lt-runway');
-    flight?.remove();
-    cue?.remove();
-    flight = cue = null;
-  }
-
-  function createStage() {
-    if (reduced.matches || location.hash || scrollY > 20 || splashDone) return;
-    runway = Math.max(460, Math.round(innerHeight * .82));
-    html.style.setProperty('--lt-runway', `${runway}px`);
-    html.classList.add('lt-name-stage');
-    flight = document.createElement('div');
-    flight.className = 'lt-name-flight';
-    flight.setAttribute('aria-hidden', 'true');
-    flight.innerHTML = '<span>Melwin</span><span>Santhosh</span>';
-    cue = document.createElement('div');
-    cue.className = 'lt-name-cue';
-    cue.setAttribute('aria-hidden', 'true');
-    cue.textContent = 'SCROLL TO EXPLORE';
-    document.body.append(flight, cue);
+    // 4.4 seconds plus a 0.4 second exit; independent of network requests.
+    splashTimer = setTimeout(finishSplash, 4400);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) finishSplash();
+    });
   }
 
   const revealObserver = new IntersectionObserver(entries => {
@@ -132,7 +100,6 @@
   function start() {
     if (started || !root.querySelector('.lt-intro h1')) return;
     started = true;
-    hero = root.querySelector('.lt-hero');
     heading = root.querySelector('.lt-intro h1');
     portrait = root.querySelector('.lt-photo-frame img, [alt*="Melwin"], [alt*="melwin"]');
 
@@ -140,7 +107,6 @@
     heading.firstChild.nodeValue = 'Melwin ';
     heading.querySelector('span').textContent = 'Santhosh';
 
-    createStage();
     registerReveals();
     if (!splashDone) document.querySelector('.lt-ruler')?.setAttribute('inert', '');
     requestTick();
@@ -165,23 +131,6 @@
       portrait.style.setProperty('--photo-presence', smooth(clamp((ratio - .12) / .73)).toFixed(3));
     }
 
-    if (flight && heading && runway) {
-      const progress = clamp(scrollY / runway), eased = smooth(progress);
-      const rect = heading.getBoundingClientRect();
-      const style = getComputedStyle(heading);
-      const textRange = document.createRange();
-      textRange.selectNodeContents(heading.querySelector('span'));
-      const textWidth = textRange.getBoundingClientRect().width + 2;
-      const scale = Math.max(1, Math.min((innerWidth - 48) / textWidth, innerHeight * .52 / rect.height, 2.8));
-      const x = (innerWidth - textWidth * scale) / 2;
-      const y = Math.max(140, (innerHeight - rect.height * scale) / 2);
-      flight.style.width = `${textWidth}px`;
-      flight.style.fontSize = style.fontSize;
-      flight.style.transform = `translate3d(${x + (rect.left - x) * eased}px,${y + (rect.top - y) * eased}px,0) scale(${scale + (1 - scale) * eased})`;
-      flight.style.visibility = progress >= 1 ? 'hidden' : 'visible';
-      cue.style.opacity = String(1 - clamp(progress * 3));
-      html.classList.toggle('lt-name-settled', progress >= 1);
-    }
   }
 
   function requestTick() {
@@ -204,7 +153,7 @@
   });
 
   document.addEventListener('keydown', event => {
-    if (!splashDone && event.key === 'Escape') finishSplash(true);
+    if (!splashDone && event.key === 'Escape') finishSplash();
     if (!splashDone && event.key === 'Tab') {
       event.preventDefault();
       splash?.querySelector('button').focus();
@@ -213,10 +162,7 @@
 
   reduced.addEventListener('change', () => {
     if (reduced.matches) {
-      const distance = runway;
-      finishSplash(true);
-      removeStage();
-      if (distance && scrollY) window.scrollTo({top: Math.max(0, scrollY - distance), behavior: 'instant'});
+      finishSplash();
       portrait?.style.removeProperty('--photo-presence');
     }
     requestTick();
