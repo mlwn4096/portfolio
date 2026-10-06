@@ -95,7 +95,7 @@
 .light-table .lt-actions a { padding: 16px 20px; font: 10px var(--mono); letter-spacing: .03em; border-radius: 2px; }
 .light-table .lt-actions a:first-child { min-width: 152px; justify-content: space-between; }
 .light-table .lt-actions a:nth-child(2) { background: none; }
-.light-table .lt-actions a:last-child { padding-inline: 3px; border: 0; border-bottom: 1px solid var(--line); background: none; }
+.light-table .lt-actions a[href="/Melwin_Santhosh_CV.pdf"] { padding-inline: 3px; border: 0; border-bottom: 1px solid var(--line); background: none; }
 .light-table .lt-socials { gap: 7px; padding-top: 0; }
 .light-table .lt-socials a { background: transparent; border: 0; padding: 10px; }
 .light-table .lt-socials svg { width: 16px; height: 16px; }
@@ -168,7 +168,6 @@
 /* Project sheets: one hero case study, then numbered two-column records. */
 .light-table #projects { background: #e3eaee; }
 .light-table #projects > div > div:first-child { margin-bottom: 42px; }
-.light-table #projects > div > div:first-child button { font: 9px var(--mono); background: none; border: 0; text-decoration: underline; text-underline-offset: 5px; }
 .light-table .lt-featured { border: 1px solid #abbfcf; background: #f2f5f7; }
 .light-table .lt-featured > div:first-child { background: #cbdce7; padding: 30px 36px; }
 .light-table .lt-featured h3 { font: 400 50px var(--serif); letter-spacing: -.04em; }
@@ -344,3 +343,8 @@
 @media (prefers-reduced-motion: reduce) {
   .light-table, .light-table * { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
 }
+
+/* Apps directory action shares the hero's paper-and-ink button treatment. */
+.light-table .lt-actions { flex-wrap: wrap; }
+.light-table .lt-actions .lt-apps-link { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; border: 1px solid var(--ink); color: var(--ink); background: var(--blue); text-decoration: none; }
+.light-table .lt-actions .lt-apps-link:hover { background: var(--ink); color: white; }

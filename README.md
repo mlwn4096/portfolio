@@ -4,7 +4,7 @@
 
 A custom **Light Table** portfolio backed by **Node.js** and **Express**. Cool paper, ink typography, a calibrated portrait frame, numbered section navigation, and ruled project sheets replace the previous visual theme. All portfolio copy, links, React behavior, resume files, and API data are preserved.
 
-The readable presentation source lives in `public/theme/light-table.css` and `public/theme/light-table.js`. Fonts are served locally with their licenses in `public/theme/fonts`. The deployed React bundle remains unchanged. See [design and review notes](docs/light-table.md) for the five independent originality reviews and validation details. This redesign is local and has not been pushed or deployed.
+The readable presentation source lives in `public/theme/light-table.css` and `public/theme/light-table.js`. Fonts are served locally with their licenses in `public/theme/fonts`. The React bundle supplies the portfolio content; the presentation layer adds an Explore apps link to https://apps.mlwn.in/. See [design and review notes](docs/light-table.md) for the five independent originality reviews and validation details. This redesign is local and has not been pushed or deployed.
 
 ---
 
@@ -40,8 +40,7 @@ portfolio-nodejs/
 │   ├── Melwin_Santhosh_CV.pdf  # ATS-compliant single-page CV
 │   ├── cv.html            # Standalone printable HTML CV
 │   ├── cv.txt             # Plain ASCII text resume
-│   ├── favicon.svg        # Neo-brutalist geometric favicon
-│   └── icons.svg          # High-contrast geometric vector sprites
+│   └── favicon.svg        # Portrait favicon
 └── README.md              # Documentation
 ```
 

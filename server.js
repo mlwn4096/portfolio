@@ -173,8 +173,8 @@ app.get('/download-cv', (req, res) => {
 
 // 3. Contact Form Submission endpoint
 app.post('/api/contact', (req, res) => {
-  const { name, email, message } = req.body;
-  if (!name || !email || !message) {
+  const { name, email, message } = req.body || {};
+  if (![name, email, message].every(value => typeof value === 'string' && value.trim())) {
     return res.status(400).json({ success: false, message: 'Please provide name, email, and message.' });
   }
 
@@ -197,8 +197,7 @@ app.use((req, res, next) => {
     // If a JS asset was requested that was not found statically, serve the canonical working JS bundle
     if (req.path.startsWith('/assets/') && req.path.endsWith('.js')) {
       const canonicalJs = path.join(__dirname, 'public', 'assets', 'index-v9zL2PqM.js');
-      const fallbackJs = path.join(__dirname, 'public', 'assets', 'index-rMVczcx5.js');
-      const targetJs = fs.existsSync(canonicalJs) ? canonicalJs : fallbackJs;
+      const targetJs = canonicalJs;
       if (fs.existsSync(targetJs)) {
         res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
         res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
@@ -208,8 +207,7 @@ app.use((req, res, next) => {
     // If a CSS asset was requested that was not found statically, serve the canonical working CSS bundle
     if (req.path.startsWith('/assets/') && req.path.endsWith('.css')) {
       const canonicalCss = path.join(__dirname, 'public', 'assets', 'index-v9zL2PqM.css');
-      const fallbackCss = path.join(__dirname, 'public', 'assets', 'index-1sc7E3Jj.css');
-      const targetCss = fs.existsSync(canonicalCss) ? canonicalCss : fallbackCss;
+      const targetCss = canonicalCss;
       if (fs.existsSync(targetCss)) {
         res.setHeader('Content-Type', 'text/css; charset=UTF-8');
         res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');

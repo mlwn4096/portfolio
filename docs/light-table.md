@@ -6,7 +6,7 @@ The design treats the portfolio as a photographic and engineering study: cool pa
 
 ## Preservation and implementation
 
-- The original React bundle and all aliases are unchanged. Text, existing links, project details, chronology, images, resume documents, and APIs remain intact.
+- The active React bundle supplies content and layout utilities for the current theme. Historical duplicate bundles have been removed; the server serves the active bundle for cached historical asset URLs. The skeleton preview button and preview state have been removed.
 - `public/theme/light-table.css` supplies the visual system over the deployed utilities. `light-table.js` adds presentation classes, native anchor navigation, accessible form labels, skip navigation, and legal-dialog focus handling. It does not replace React's content or state.
 - Repeated ticker copies are visually suppressed; each original phrase remains available. On mobile, the strips scroll horizontally with keyboard access.
 - Fonts are local WOFF2 files with redistribution licenses. There are no Google Fonts requests and no new production dependencies.
@@ -35,7 +35,7 @@ The browser suite `tests/test_light_table.cjs` checks:
 - No clipped content or document overflow at 320, 390, 768, 1024, and 1440 px.
 - Local font loading and no JavaScript exceptions.
 - Automated WCAG A/AA checks on desktop, mobile, and the legal dialog.
-- Mobile menu opening, Escape, and anchor navigation; skeleton preview and restoration.
+- Mobile menu opening, Escape, and anchor navigation; project visibility and absence of the skeleton preview button.
 - Clipboard interaction, PDF content, and a **mocked** form submission (no real message sent).
 - Dialog focus trapping/restoration and reduced-motion behavior.
 

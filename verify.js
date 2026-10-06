@@ -98,42 +98,8 @@ for (const img of requiredImages) {
   }
 }
 
-// Step 4: Keep all JS and CSS bundle aliases identical to avoid version desync
-try {
-  const indexHtml = fs.readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf8');
-  const sm = indexHtml.match(/src="([^"]+\.js[^"]*)"/);
-  const activeScript = sm ? sm[1].split('?')[0].replace(/^\//, '') : 'assets/index-v9zL2PqM.js';
-  const canonicalJs = path.join(__dirname, 'public', activeScript);
-  const canonicalContent = fs.readFileSync(canonicalJs, 'utf8');
-  
-  for (const jsFile of jsAssets) {
-    const p = path.join(assetsDir, jsFile);
-    const content = fs.readFileSync(p, 'utf8');
-    if (content !== canonicalContent) {
-      fs.writeFileSync(p, canonicalContent, 'utf8');
-      console.log(`🔄 Re-synced ${jsFile} to canonical bundle content`);
-    }
-  }
-  logPass(`All JS bundle aliases synchronized to ${path.basename(canonicalJs)}`);
-
-  const cm = indexHtml.match(/href="([^"]+\.css[^"]*)"/);
-  const activeCss = cm ? cm[1].split('?')[0].replace(/^\//, '') : 'assets/index-v9zL2PqM.css';
-  const canonicalCss = path.join(__dirname, 'public', activeCss);
-  const canonicalCssContent = fs.readFileSync(canonicalCss, 'utf8');
-  const cssAssets = fs.readdirSync(assetsDir).filter(f => f.endsWith('.css'));
-
-  for (const cssFile of cssAssets) {
-    const p = path.join(assetsDir, cssFile);
-    const content = fs.readFileSync(p, 'utf8');
-    if (content !== canonicalCssContent) {
-      fs.writeFileSync(p, canonicalCssContent, 'utf8');
-      console.log(`🔄 Re-synced ${cssFile} to canonical CSS content`);
-    }
-  }
-  logPass(`All CSS bundle aliases synchronized to ${path.basename(canonicalCss)}`);
-} catch (e) {
-  logFail("Bundle alias synchronization", e.message);
-}
+// Historical asset URLs are served by the server's canonical-bundle fallback.
+// Keep only the active bundles on disk; verification must not recreate aliases.
 
 // Step 5: Run Clean Portfolio verification suite
 try {

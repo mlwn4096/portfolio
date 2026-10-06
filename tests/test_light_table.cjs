@@ -38,9 +38,7 @@ const base = process.env.TEST_URL || 'http://localhost:3000';
     let results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
     assert.deepEqual(results.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })), [], 'Desktop accessibility');
 
-    await page.getByRole('button', { name: 'PREVIEW SKELETON LOADER' }).click();
-    await page.getByLabel('Loading repository details').waitFor();
-    await page.getByRole('button', { name: 'SHOW REPOSITORIES' }).click();
+    assert.equal(await page.getByRole('button', { name: /SKELETON|SHOW REPOSITORIES/ }).count(), 0);
     await page.locator('.lt-featured').waitFor();
     await page.getByRole('button', { name: 'COPY EMAIL ADDRESS' }).click();
     assert.equal(await page.evaluate(() => navigator.clipboard.readText()), 'melwinsanthoah4096@gmail.com');
@@ -98,6 +96,6 @@ const base = process.env.TEST_URL || 'http://localhost:3000';
     await page.goto(base, { waitUntil: 'networkidle' });
     await page.locator('#contact').waitFor();
     assert.deepEqual(redesigned, await snapshot(), 'All original content and links preserved exactly');
-    console.log('PASS: content, links, five viewport sizes, local fonts, accessibility, mobile menu, skeleton state, copy email, mocked contact form, dialog focus, PDF, and reduced motion.');
+    console.log('PASS: content, links, five viewport sizes, local fonts, accessibility, mobile menu, copy email, mocked contact form, dialog focus, PDF, and reduced motion.');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });
