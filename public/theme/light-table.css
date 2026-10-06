@@ -344,7 +344,5 @@
   .light-table, .light-table * { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
 }
 
-/* Apps directory action shares the hero's paper-and-ink button treatment. */
+/* Hero actions wrap on narrow screens. */
 .light-table .lt-actions { flex-wrap: wrap; }
-.light-table .lt-actions .lt-apps-link { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; border: 1px solid var(--ink); color: var(--ink); background: var(--blue); text-decoration: none; }
-.light-table .lt-actions .lt-apps-link:hover { background: var(--ink); color: white; }

@@ -4,7 +4,7 @@
 
 A custom **Light Table** portfolio backed by **Node.js** and **Express**. Cool paper, ink typography, a calibrated portrait frame, numbered section navigation, and ruled project sheets replace the previous visual theme. All portfolio copy, links, React behavior, resume files, and API data are preserved.
 
-The readable presentation source lives in `public/theme/light-table.css` and `public/theme/light-table.js`. Fonts are served locally with their licenses in `public/theme/fonts`. The React bundle supplies the portfolio content; the presentation layer adds an Explore apps link to https://apps.mlwn.in/. See [design and review notes](docs/light-table.md) for the five independent originality reviews and validation details. This redesign is local and has not been pushed or deployed.
+The readable presentation source lives in `public/theme/light-table.css` and `public/theme/light-table.js`. Fonts are served locally with their licenses in `public/theme/fonts`. The React bundle supplies the portfolio content; the hero includes a My Apps link to https://apps.mlwn.in. See [design and review notes](docs/light-table.md) for the five independent originality reviews and validation details. This redesign is local and has not been pushed or deployed.
 
 ---
 

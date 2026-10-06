@@ -21,14 +21,6 @@
     mark('.lt-intro > div:nth-child(3)', 'lt-bio');
     mark('.lt-intro > div:nth-child(4)', 'lt-actions');
     mark('.lt-intro > div:nth-child(5)', 'lt-socials');
-    const actions = root.querySelector('.lt-actions');
-    if (actions && !actions.querySelector('.lt-apps-link')) {
-      const apps = document.createElement('a');
-      apps.href = 'https://apps.mlwn.in/';
-      apps.className = 'lt-apps-link';
-      apps.textContent = 'Explore apps ↗';
-      actions.append(apps);
-    }
     mark('.lt-portrait > div', 'lt-photo-sheet');
     mark('.lt-photo-sheet > div:nth-child(2)', 'lt-photo-frame');
     mark('#about > div > .grid > div:first-child', 'lt-about-main');
