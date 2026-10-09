@@ -105,6 +105,13 @@ const cvData = {
   ],
   projects: [
     {
+      title: "Bridge",
+      category: "Free & Open Source / Mac + Android",
+      description: "Bridge brings your Mac and Android closer together. A free, open source connectivity app designed to make everyday life across your devices easier. Explore the code, build it yourself, or contribute on GitHub.",
+      tags: ["macOS", "Android", "Device Connectivity", "Open Source", "Free"],
+      link: "https://github.com/mlwn4096/Bridge"
+    },
+    {
       title: "UHI: Urban Heat Intelligence — Kochi Heat Action Planner",
       category: "Climate AI & Geospatial Machine Learning",
       description: "AI-powered urban climate decision system developed for HackMe'26 at VISAT Engineering College (PS1). Features a physics-informed scene-panel XGBoost model over 54,168 100m cells across Kochi, a ₹10 crore budget optimizer cooling ~186k people, heat-neutral project screening, what-if simulations, and live Malayalam alert layers.",
