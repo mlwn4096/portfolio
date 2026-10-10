@@ -107,9 +107,10 @@ const cvData = {
     {
       title: "Bridge",
       category: "Free & Open Source / Mac + Android",
-      description: "Bridge brings your Mac and Android closer together. A free, open source connectivity app designed to make everyday life across your devices easier. Explore the code, build it yourself, or contribute on GitHub.",
+      description: "A free, open source macOS and Android companion I built for local file transfers, clipboard sharing, phone notifications, and device controls. Native apps, with no account or cloud relay.",
       tags: ["macOS", "Android", "Device Connectivity", "Open Source", "Free"],
-      link: "https://github.com/mlwn4096/Bridge"
+      link: "https://github.com/mlwn4096/Bridge",
+      downloadUrl: "https://apps.mlwn.in/#bridge"
     },
     {
       title: "UHI: Urban Heat Intelligence — Kochi Heat Action Planner",
